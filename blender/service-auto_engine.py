@@ -24,6 +24,7 @@
 
 import bpy
 import math
+import os
 import random
 import sys
 from mathutils import Vector
@@ -40,6 +41,16 @@ OUT_DIR    = arg("--out", "//render/service-auto/")
 TOTAL      = int(arg("--frames", 90))     # 90 = ~3 MB in webp, sweet spot
 RES_X, RES_Y = 1600, 1000
 SEED       = 20260828
+
+# Cadrul scos separat, la rezolutie dubla, ca sa-l duci in Nano Banana Pro si
+# sa stabilesti acolo look-ul final. Ala devine referinta de stil pentru v2v.
+STILL      = int(arg("--still", 62))
+# "cycles" arata mult mai bine dar randeaza de ~6x mai lent. Pentru cadrul-ancora
+# merita; pentru secventa intreaga, eevee e suficient — oricum AI-ul o reimbraca.
+ENGINE     = arg("--engine", "eevee").lower()
+# HDRI: daca pui un .hdr / .exr in blender/hdri/ si dai calea aici, metalul
+# incepe sa reflecte un spatiu real. Fara el, folosim un studio construit din lumini.
+HDRI       = arg("--hdri", "")
 
 # Fereastra in care sosesc piesele (restul e asezare + rotatie lenta).
 ARRIVE_FIRST = 4
@@ -309,12 +320,29 @@ light("RimRosu", "AREA", (-2.4, 4.6, 1.4), 900, (1.0, 0.30, 0.18), size=4.0,
 light("Kick", "AREA", (2.0, 2.6, -2.6), 260, (1.0, 0.74, 0.50), size=3.0,
       rot=(math.radians(-58), 0, math.radians(150)))
 
-# lume neagra: fundalul vine din CSS, aici tinem doar reflexiile
+# Lumea. Fundalul vizibil vine din CSS (randam cu alpha), deci lumea de aici
+# exista doar ca sa dea reflexii metalului. Un HDRI real face cea mai mare
+# diferenta de realism din tot scriptul.
 world = bpy.data.worlds.new("Studio")
 world.use_nodes = True
-world.node_tree.nodes["Background"].inputs[0].default_value = (0.02, 0.02, 0.025, 1)
-world.node_tree.nodes["Background"].inputs[1].default_value = 0.35
 bpy.context.scene.world = world
+wn = world.node_tree.nodes
+wl = world.node_tree.links
+
+if HDRI and os.path.exists(bpy.path.abspath(HDRI)):
+    env = wn.new("ShaderNodeTexEnvironment")
+    env.image = bpy.data.images.load(bpy.path.abspath(HDRI))
+    mapn = wn.new("ShaderNodeMapping")
+    texco = wn.new("ShaderNodeTexCoord")
+    mapn.inputs["Rotation"].default_value[2] = math.radians(35)
+    wl.new(texco.outputs["Generated"], mapn.inputs["Vector"])
+    wl.new(mapn.outputs["Vector"], env.inputs["Vector"])
+    wl.new(env.outputs["Color"], wn["Background"].inputs[0])
+    wn["Background"].inputs[1].default_value = 0.9
+    print(f"[motorline] HDRI incarcat: {HDRI}")
+else:
+    wn["Background"].inputs[0].default_value = (0.02, 0.02, 0.025, 1)
+    wn["Background"].inputs[1].default_value = 0.35
 
 # ----------------------------------------------------------------- camera
 bpy.ops.object.empty_add(type="PLAIN_AXES", location=(0, 0, 0.12))
@@ -352,21 +380,42 @@ scene.frame_end = TOTAL
 
 engines = [e.identifier for e in
            bpy.types.RenderSettings.bl_rna.properties["engine"].enum_items]
-scene.render.engine = ("BLENDER_EEVEE_NEXT" if "BLENDER_EEVEE_NEXT" in engines
-                       else "BLENDER_EEVEE")
 
-ee = scene.eevee
-ee.taa_render_samples = 64              # fix, niciodata adaptiv: adaptivul palpaie
-if hasattr(ee, "use_gtao"):
-    ee.use_gtao = True
-if hasattr(ee, "use_bloom"):
-    ee.use_bloom = True
-    ee.bloom_intensity = 0.035
-if hasattr(ee, "use_ssr"):
-    ee.use_ssr = True
-    ee.use_ssr_refraction = True
-if hasattr(ee, "use_raytracing"):       # EEVEE Next
-    ee.use_raytracing = True
+if ENGINE.startswith("cyc"):
+    scene.render.engine = "CYCLES"
+    scene.cycles.samples = 128
+    scene.cycles.use_denoising = True
+    # Denoising e pornit pentru ca aici randam cadre individuale, nu secventa
+    # care se scrubuieste direct. Secventa trece oricum prin AI dupa asta.
+    if hasattr(scene.cycles, "use_adaptive_sampling"):
+        scene.cycles.use_adaptive_sampling = False   # adaptiv = zgomot variabil
+    try:
+        prefs = bpy.context.preferences.addons["cycles"].preferences
+        prefs.get_devices()
+        for dev_type in ("OPTIX", "CUDA", "HIP", "METAL"):
+            try:
+                prefs.compute_device_type = dev_type
+                for d in prefs.devices:
+                    d.use = True
+                scene.cycles.device = "GPU"
+                print(f"[motorline] Cycles pe GPU ({dev_type})")
+                break
+            except Exception:
+                continue
+    except Exception:
+        print("[motorline] Cycles pe CPU")
+else:
+    scene.render.engine = ("BLENDER_EEVEE_NEXT" if "BLENDER_EEVEE_NEXT" in engines
+                           else "BLENDER_EEVEE")
+    ee = scene.eevee
+    ee.taa_render_samples = 64          # fix, niciodata adaptiv: adaptivul palpaie
+    for flag, val in (("use_gtao", True), ("use_ssr", True),
+                      ("use_ssr_refraction", True), ("use_raytracing", True)):
+        if hasattr(ee, flag):
+            setattr(ee, flag, val)
+    if hasattr(ee, "use_bloom"):
+        ee.use_bloom = True
+        ee.bloom_intensity = 0.035
 
 scene.render.use_motion_blur = False    # OBLIGATORIU: cadrele se scrubuiesc
 scene.render.resolution_x = RES_X
@@ -376,13 +425,82 @@ scene.render.film_transparent = True    # alpha: fundalul il pune CSS-ul
 scene.render.image_settings.file_format = "PNG"
 scene.render.image_settings.color_mode = "RGBA"
 scene.render.image_settings.compression = 15
-scene.render.filepath = OUT_DIR
+scene.render.filepath = OUT_DIR + "beauty/"
 
-scene.view_settings.view_transform = "AgX" if "AgX" in [
-    t.name for t in scene.view_settings.bl_rna.properties["view_transform"].enum_items
-] else "Filmic"
-scene.view_settings.look = "AgX - Medium High Contrast" if scene.view_settings.view_transform == "AgX" else "Medium High Contrast"
+vt = [t.identifier for t in
+      scene.view_settings.bl_rna.properties["view_transform"].enum_items]
+scene.view_settings.view_transform = "AgX" if "AgX" in vt else "Filmic"
+try:
+    scene.view_settings.look = ("AgX - Medium High Contrast"
+                                if scene.view_settings.view_transform == "AgX"
+                                else "Medium High Contrast")
+except Exception:
+    pass
 
-print(f"[motorline] gata. {TOTAL} cadre -> {OUT_DIR}")
-print("[motorline] randezi cu:  blender -b fisier.blend -a")
-print("[motorline] sau direct:  blender -b -P blender/service-auto_engine.py -a")
+# ------------------------------------------- straturi de control pentru AI
+# Adancimea si normalele sunt cele doua semnale pe care aproape orice unealta
+# de video-to-video le poate folosi ca sa nu-si inventeze propria geometrie.
+# Le scoatem in foldere separate; daca unealta ta nu le accepta, le ignori.
+vl = scene.view_layers[0]
+vl.use_pass_z = True
+vl.use_pass_normal = True
+
+scene.use_nodes = True
+nt = scene.node_tree
+for n in list(nt.nodes):
+    nt.nodes.remove(n)
+
+rl = nt.nodes.new("CompositorNodeRLayers")
+comp = nt.nodes.new("CompositorNodeComposite")
+nt.links.new(rl.outputs["Image"], comp.inputs["Image"])
+if "Alpha" in rl.outputs and "Alpha" in comp.inputs:
+    nt.links.new(rl.outputs["Alpha"], comp.inputs["Alpha"])
+
+# depth: normalizat intre camera si fundal, altfel iese alb-negru inutilizabil
+norm = nt.nodes.new("CompositorNodeNormalize")
+inv = nt.nodes.new("CompositorNodeInvert")
+nt.links.new(rl.outputs["Depth"], norm.inputs[0])
+nt.links.new(norm.outputs[0], inv.inputs["Color"])
+
+fo_depth = nt.nodes.new("CompositorNodeOutputFile")
+fo_depth.base_path = OUT_DIR + "depth/"
+fo_depth.format.file_format = "PNG"
+fo_depth.format.color_mode = "BW"
+nt.links.new(inv.outputs["Color"], fo_depth.inputs[0])
+
+fo_norm = nt.nodes.new("CompositorNodeOutputFile")
+fo_norm.base_path = OUT_DIR + "normal/"
+fo_norm.format.file_format = "PNG"
+fo_norm.format.color_mode = "RGB"
+nt.links.new(rl.outputs["Normal"], fo_norm.inputs[0])
+
+# ------------------------------------------------------- cadrul-ancora
+# Un singur cadru, la rezolutie dubla, pe care il duci in generatorul de imagini
+# si il aduci la look-ul final. Devine referinta de stil pentru pasul video.
+def render_still():
+    scene.frame_set(min(max(STILL, 1), TOTAL))
+    scene.render.resolution_x = RES_X * 2
+    scene.render.resolution_y = RES_Y * 2
+    scene.render.filepath = OUT_DIR + f"ancora_frame{STILL:04d}.png"
+    fo_depth.mute = True
+    fo_norm.mute = True
+    bpy.ops.render.render(write_still=True)
+    fo_depth.mute = False
+    fo_norm.mute = False
+    scene.render.resolution_x = RES_X
+    scene.render.resolution_y = RES_Y
+    scene.render.filepath = OUT_DIR + "beauty/"
+    print(f"[motorline] cadru-ancora scris: {scene.render.filepath}")
+
+if "--still-only" in ARGS:
+    render_still()
+elif "--with-still" in ARGS:
+    render_still()
+
+print(f"[motorline] {len(PARTS)} piese, {TOTAL} cadre, motor: {scene.render.engine}")
+print(f"[motorline] iese in: {OUT_DIR}")
+print("[motorline] ---")
+print("[motorline] doar cadrul-ancora, in Cycles, pentru look:")
+print("[motorline]   blender -b -P blender/service-auto_engine.py -- --still-only --engine cycles")
+print("[motorline] secventa completa:")
+print("[motorline]   blender -b -P blender/service-auto_engine.py -a")

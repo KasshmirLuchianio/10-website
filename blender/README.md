@@ -1,56 +1,105 @@
-# Pipeline hero hypermotion — Blender → site
+# Pipeline hero — Blender face mișcarea, AI-ul face imaginea
 
-Fiecare hero e o **secvență de cadre randate în Blender**, redate pe un canvas
-legat de scroll. Nu e video și nu e 3D în browser: sunt imagini, iar degetul
-utilizatorului decide ce cadru se vede. De aceea merge identic pe orice telefon
-și se poate derula înainte și înapoi fără sacadare.
+**Nu trebuie să știi Blender.** Nu deschizi interfața, nu atingi noduri, nu pui
+lumini. Scripturile de aici construiesc singure scena. Tu rulezi o comandă și
+primești fișiere.
 
-## Pașii
+Împărțirea muncii:
 
-**1. Randezi scena**
+| Cine | Ce face | De ce |
+|---|---|---|
+| **Blender** | geometria, camera, mișcarea, timing-ul | e singurul care ține cadrele identice între ele |
+| **Tu, în Higgsfield** | cum arată — material, lumină, atmosferă | e singurul care face imaginea să pară fotografie |
+
+## Instalare, o singură dată
+
+Descarci Blender de pe blender.org (gratuit) și îl instalezi. Atât. Nu îl
+deschizi niciodată. Ca să poți scrie `blender` în terminal:
+
+- **Windows**: adaugi `C:\Program Files\Blender Foundation\Blender 4.x` în PATH,
+  sau folosești calea completă între ghilimele în loc de `blender`.
+- **macOS**: `alias blender="/Applications/Blender.app/Contents/MacOS/Blender"`
+
+## Pasul 1 — cadrul-ancoră (5 minute)
+
+Scoți un singur cadru din mijlocul mișcării, la rezoluție dublă, randat frumos:
+
+```bash
+blender -b -P blender/service-auto_engine.py -- --still-only --engine cycles
+```
+
+Iese `render/service-auto/ancora_frame0062.png`. Ăsta e punctul tău de plecare.
+
+## Pasul 2 — îl faci fotoreal (tu, în Higgsfield)
+
+Duci cadrul în Nano Banana Pro și iterezi până arată exact cum vrei: metal uzat,
+urme de ulei, lumină de atelier, praf, ce vrei tu. **Nu-ți pasă de mișcare aici**
+— e o poză, ai voie să o refaci de douăzeci de ori.
+
+Ce iese de aici e **referința de stil**. De ea depinde tot restul.
+
+## Pasul 3 — secvența de mișcare (20-40 de minute de randare)
 
 ```bash
 blender -b -P blender/service-auto_engine.py -a
-# sau cu parametri:
-blender -b -P blender/service-auto_engine.py -a -- --out //render/motor/ --frames 90
 ```
 
-Scriptul construiește scena de la zero de fiecare dată — nu ai nevoie de niciun
-`.blend` pregătit. Ies 90 de PNG-uri cu alpha, 1600×1000.
+Ies trei foldere:
 
-**2. Le encodezi pentru web**
+- `beauty/` — randarea propriu-zisă, 90 de cadre. Asta e **driving video**-ul.
+- `depth/` — harta de adâncime. Spune AI-ului ce e aproape și ce e departe.
+- `normal/` — orientarea suprafețelor. Îl împiedică să-și inventeze altă geometrie.
+
+Le lipești într-un mp4:
 
 ```bash
-ffmpeg -i render/motor/%04d.png -vf scale=1600:-1 \
-       -c:v libwebp -q:v 74 -compression_level 6 \
+ffmpeg -framerate 30 -i render/service-auto/beauty/%04d.png -c:v libx264 -crf 16 drive.mp4
+```
+
+## Pasul 4 — video-to-video (tu, în Higgsfield)
+
+Dai `drive.mp4` ca sursă și cadrul aprobat de la pasul 2 ca referință de stil.
+
+**Regula de aur: promptul descrie doar materialul și lumina. Niciodată mișcarea.**
+Dacă scrii „camera se apropie", modelul inventează propria apropiere peste a ta
+și se bat cap în cap. Mișcarea vine din clip, aia e toată ideea.
+
+Testează pe **10 cadre înainte să dai drumul la 90** — economisești credite și
+afli din prima dacă rețeta ține.
+
+## Pasul 5 — înapoi în site
+
+```bash
+ffmpeg -i final.mp4 -vsync 0 tmp/%04d.png
+ffmpeg -i tmp/%04d.png -vf scale=1600:-1 -c:v libwebp -q:v 74 -compression_level 6 \
        service-auto/hero/frames/motor_%04d.webp
 ```
 
-Ținta: **sub 4 MB pentru toată secvența**. Dacă depășești, scazi întâi
-rezoluția, apoi calitatea, și abia la final numărul de cadre — sub 60 de cadre
-se vede saltul la scroll lent.
+Ținta: **sub 4 MB pentru toată secvența**. Le copiezi în `<nișă>/hero/frames/` și
+gata — pagina le găsește singură. Dacă lipsesc, site-ul rămâne un hero clasic și
+nu se vede nimic stricat.
 
-**3. Le pui în site**
+## Testul de acceptare
 
-Le copiezi în `<nișă>/hero/frames/`. Atât. Player-ul din pagină verifică singur
-dacă primul cadru există: dacă da, pornește heroul cu scroll; dacă nu, pagina
-rămâne un hero clasic și nu se vede nimic stricat.
+Înainte să pui cadrele în site: le deschizi în pagină și **derulezi foarte încet,
+înainte și înapoi, de trei ori.** Dacă textura „fierbe" — dacă zgârieturile de pe
+metal își schimbă poziția de la un cadru la altul — ai pierdut. Scazi puterea de
+transformare în Higgsfield și reiei.
 
-## Pasul opțional: fotoreal prin Higgsfield
+Un clip care arată impecabil la 30fps poate fi complet inutilizabil scrubuit.
 
-Randarea din Blender e curată, dar e evident CGI. Pentru clienții premium,
-treci secvența prin **video-to-video**, unde mișcarea din clipul-sursă e
-păstrată și doar aspectul se schimbă:
+## Opțional: HDRI
 
-1. Lipești cadrele într-un mp4: `ffmpeg -framerate 30 -i %04d.png -c:v libx264 -crf 16 drive.mp4`
-2. Îl dai ca driving video în Kling O1 Edit sau Seedance (skill-urile `kling-o1-edit`,
-   `seedance-footage-vfx`), cu prompt de material și lumină — nu de mișcare.
-   Mișcarea vine din Blender, aia e ideea.
-3. Extragi cadrele înapoi: `ffmpeg -i out.mp4 -vsync 0 %04d.png` și reiei pasul 2 de sus.
+Dacă pui un fișier `.hdr` de atelier în `blender/hdri/` și îl dai scriptului,
+metalul începe să reflecte un spațiu real în loc de un studio gol. E cel mai mare
+salt de realism pentru cel mai mic efort — și înseamnă că AI-ul are mai puțin de
+inventat, deci driftează mai puțin.
 
-Verifică la scrub lent: dacă apar palpăiri de textură între cadre vecine, scazi
-denoise-ul sau crești numărul de pași. Un video care arată bine la 30fps poate
-fi inutilizabil scrubuit cadru cu cadru.
+```bash
+blender -b -P blender/service-auto_engine.py -a -- --hdri blender/hdri/atelier.hdr
+```
+
+HDRI-uri gratuite: polyhaven.com, categoria „indoor" sau „studio".
 
 ## Reguli care nu se negociază
 
@@ -58,14 +107,13 @@ fi inutilizabil scrubuit cadru cu cadru.
 - **Sampling fix, nu adaptiv.** Diferența de zgomot între cadre se citește ca palpăire.
 - **Camera se mișcă puțin.** Peste ~25° de rotație, creierul citește „video" în loc
   de „controlez eu". Un travelling scurt bate un orbit spectaculos.
-- **Fundal transparent.** Culoarea o pune CSS-ul, ca să o poți schimba pe fiecare
-  client fără să re-randezi.
+- **Fundal transparent.** Culoarea o pune CSS-ul, ca să vinzi același hero la trei
+  clienți cu trei culori de brand, fără să re-randezi.
 
 ## Cadre de test
 
-`_testframes.py` generează o secvență de verificare cu aceeași coregrafie, ca să
-poți testa scroll-ul, încadrarea și greutatea paginii înainte să pornești Blender.
-Nu e artă finală — o suprascrii cu randările reale.
+`_testframes.py` generează o secvență de verificare cu aceeași coregrafie, fără
+Blender și fără AI, ca să testezi scroll-ul și greutatea paginii. Nu e artă finală.
 
 ```bash
 python3 blender/_testframes.py
