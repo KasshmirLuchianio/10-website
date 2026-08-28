@@ -103,6 +103,71 @@ footer{padding:2.2rem var(--pad);color:var(--muted);font-size:.85rem;display:fle
 .reveal{opacity:0;transform:translateY(22px);transition:.65s cubic-bezier(.22,1,.36,1)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+/* ============================================================
+   HERO CU SCROLL-SCRUB — secventa randata in Blender
+   Acelasi player ca pe celelalte site-uri, alte culori si alt text.
+   Fara secventa in hero/frames/, sectiunea redevine hero clasic.
+   ============================================================ */
+.sh{position:relative;height:440vh}
+.sh__stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;
+  display:grid;place-items:center;
+  background:
+    radial-gradient(62% 66% at 24% 24%,rgba(0,103,214,.28),transparent 64%),
+    radial-gradient(60% 60% at 82% 78%,rgba(255,176,32,.12),transparent 62%),
+    linear-gradient(180deg,#0B1725 0%,#060D16 100%)}
+.sh__canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.sh__layer{position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  padding:6rem var(--pad) 5rem;opacity:0;pointer-events:none;will-change:opacity,transform;
+  color:#fff;text-align:center}
+.sh__layer.is-on{pointer-events:auto}
+.sh__layer--open{place-items:center start;text-align:left}
+.sh__inner{max-width:780px;width:100%}
+.sh__beat{max-width:880px}
+.sh__beat h2{font-size:clamp(2rem,6vw,4.2rem);letter-spacing:-.03em;line-height:1.06}
+.sh__beat h2 em{font-style:normal;color:#5AA9FF}
+.sh__beat p{color:#9FB6CC;font-size:clamp(1rem,1.7vw,1.18rem);margin-top:1rem;
+  max-width:46ch;margin-inline:auto}
+.sh__num{display:inline-block;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:800;color:#5AA9FF;background:rgba(90,169,255,.12);
+  padding:.35rem .85rem;border-radius:50px;margin-bottom:1.1rem}
+.sh__layer--open h1{color:#fff;font-size:clamp(2.3rem,6vw,4rem)}
+.sh__layer--open h1 em{font-style:normal;color:#5AA9FF}
+.sh__layer--open p.lead{color:#9FB6CC;font-size:1.1rem;max-width:46ch;margin:1.3rem 0 2rem}
+.sh__layer--open .ticks{color:#C8D8E8}
+.sh__layer--open .ticks i{color:#5AA9FF}
+.sh__rail{position:absolute;left:var(--pad);right:var(--pad);bottom:1.6rem;z-index:3;
+  height:2px;background:rgba(255,255,255,.14)}
+.sh__rail i{display:block;height:100%;width:0;background:#2E8BFF}
+.sh__pct{position:absolute;right:var(--pad);bottom:2.4rem;z-index:3;font-size:.72rem;
+  letter-spacing:.18em;color:#7C93AA;font-weight:700}
+.sh__hint{position:absolute;left:50%;bottom:2.6rem;transform:translateX(-50%);z-index:3;
+  font-size:.7rem;letter-spacing:.3em;color:#7C93AA;font-weight:700;
+  animation:shPulse 2.4s ease-in-out infinite}
+@keyframes shPulse{0%,100%{opacity:.35}50%{opacity:1}}
+.sh__load{position:absolute;inset:0;z-index:4;display:grid;place-items:center;
+  background:#060D16;transition:opacity .5s ease}
+.sh__load.is-done{opacity:0;pointer-events:none}
+.sh__load span{font-size:.74rem;letter-spacing:.24em;color:#7C93AA;font-weight:700}
+
+.sh.is-static{height:auto}
+.sh.is-static .sh__stage{position:relative;height:auto;min-height:auto;
+  place-items:center start;padding:clamp(2.5rem,6vw,4.5rem) var(--pad);
+  background:linear-gradient(170deg,#F2F8FF 0%,#fff 70%)}
+.sh.is-static .sh__canvas,.sh.is-static .sh__rail,.sh.is-static .sh__pct,
+.sh.is-static .sh__load,.sh.is-static .sh__hint,
+.sh.is-static .sh__layer--beat,.sh.is-static .sh__layer--end{display:none}
+.sh.is-static .sh__layer{position:relative;inset:auto;opacity:1;transform:none;
+  padding:0;pointer-events:auto;display:block;color:var(--ink)}
+.sh.is-static .sh__layer--open h1{color:var(--ink)}
+.sh.is-static .sh__layer--open h1 em{color:var(--blue)}
+.sh.is-static .sh__layer--open p.lead{color:var(--muted)}
+.sh.is-static .sh__layer--open .ticks{color:var(--ink)}
+.sh.is-static .sh__layer--open .ticks i{color:var(--blue)}
+
+@media(max-width:760px){.sh{height:340vh}}
+@media(prefers-reduced-motion:reduce){.sh{height:auto}}
+
 </style>
 </head>
 <body>
@@ -110,15 +175,17 @@ footer{padding:2.2rem var(--pad);color:var(--muted);font-size:.85rem;display:fle
 <div class="topbar">Program <b>NON-STOP</b> · Ajungem în 45 de minute în București și Ilfov · Deplasare gratuită la lucrările acceptate</div>
 
 <nav class="nav">
-  <a href="#" class="brand">Aqua<span>Fix</span></a>
+  <a href="#hero" class="brand">Aqua<span>Fix</span></a>
   <div class="nav__links"><a href="#servicii">Servicii</a><a href="#tarife">Tarife</a><a href="#zone">Zone</a><a href="#faq">Întrebări</a></div>
   <a href="tel:+40733222444" class="btn btn--p">0733 222 444</a>
 </nav>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="hero__grid">
-      <div>
+<section class="sh" id="hero">
+  <div class="sh__stage" id="shStage">
+    <canvas class="sh__canvas" id="shCanvas"></canvas>
+
+    <div class="sh__layer sh__layer--open is-on" id="shOpen">
+      <div class="sh__inner">
         <span class="tag">Instalator autorizat ANRE · non-stop</span>
         <h1>Ți-a plesnit o țeavă? <em>Suntem la tine în 45 de minute.</em></h1>
         <p class="lead">Echipe în toate sectoarele. Îți spunem prețul la telefon, înainte să venim — și nu se schimbă când ajungem la ușă.</p>
@@ -132,20 +199,42 @@ footer{padding:2.2rem var(--pad);color:var(--muted);font-size:.85rem;display:fle
           <li><i>✓</i> Plata cu cardul, la fața locului</li>
         </ul>
       </div>
-      <div class="callcard">
-        <span class="lbl">Dispecerat non-stop</span>
-        <a class="num" href="tel:+40733222444">0733 222 444</a>
-        <p class="sub">Răspundem în mai puțin de 20 de secunde, inclusiv noaptea și în weekend.</p>
-        <hr />
-        <div class="mini">
-          <div><b>45'</b><span>TIMP MEDIU DE SOSIRE</span></div>
-          <div><b>4.8★</b><span>389 RECENZII</span></div>
-          <div><b>12 ani</b><span>PE PIAȚĂ</span></div>
+    </div>
+
+    <div class="sh__layer sh__layer--beat" id="shBeat1">
+      <div class="sh__beat">
+        <span class="sh__num">01 — Urgența</span>
+        <h2>Apa nu întreabă<br>dacă e <em>ora trei noaptea</em>.</h2>
+        <p>Dispecerat non-stop, echipe pe teren în toate cele șase sectoare și în Ilfov.</p>
+      </div>
+    </div>
+
+    <div class="sh__layer sh__layer--beat" id="shBeat2">
+      <div class="sh__beat">
+        <span class="sh__num">02 — Diagnoza</span>
+        <h2>Găsim pierderea<br><em>fără</em> să-ți spargem tot peretele.</h2>
+        <p>Camere pe canal și detecție cu azot. Spargem doar unde trebuie, și refacem finisajul după noi.</p>
+      </div>
+    </div>
+
+    <div class="sh__layer sh__layer--end" id="shEnd">
+      <div class="sh__beat">
+        <span class="sh__num">03 — Rezolvat</span>
+        <h2>Apa curge iar<br>pe unde trebuie.</h2>
+        <p style="margin-bottom:2rem">Garanție 12 luni la manoperă. Factură pe loc, plata cu cardul.</p>
+        <div class="hero__actions" style="justify-content:center">
+          <a href="tel:+40733222444" class="btn btn--p">0733 222 444</a>
+          <a href="https://wa.me/40733222444" class="btn btn--w">Scrie pe WhatsApp</a>
         </div>
       </div>
     </div>
+
+    <div class="sh__rail"><i id="shRail"></i></div>
+    <div class="sh__pct" id="shPct">00 / 90</div>
+    <div class="sh__hint" id="shHint">DERULEAZĂ</div>
+    <div class="sh__load" id="shLoad"><span id="shLoadTxt">SE ÎNCARCĂ 0%</span></div>
   </div>
-</header>
+</section>
 
 <section class="urgent" style="padding-top:2rem;padding-bottom:2rem">
   <div class="wrap">
@@ -225,6 +314,176 @@ footer{padding:2.2rem var(--pad);color:var(--muted);font-size:.85rem;display:fle
 <script>
 const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+/* ============================================================
+   Player de secventa pentru hero. Fara biblioteci.
+   Cadrele vin din blender/service-auto_engine.py, encodate webp.
+   ============================================================ */
+(function () {
+  var CFG = {
+    path: "hero/frames/apa_",     // apa_0001.webp ... apa_0090.webp
+    ext: ".webp",
+    count: 90,
+    pad: 4
+  };
+
+  var sh     = document.querySelector(".sh");
+  var stage  = document.getElementById("shStage");
+  var canvas = document.getElementById("shCanvas");
+  var loadEl = document.getElementById("shLoad");
+  var loadTx = document.getElementById("shLoadTxt");
+  var railEl = document.getElementById("shRail");
+  var pctEl  = document.getElementById("shPct");
+  var hintEl = document.getElementById("shHint");
+  if (!sh || !canvas) return;
+
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function goStatic() { sh.classList.add("is-static"); }
+  if (reduce) { goStatic(); return; }
+
+  /* --- straturile de text si ferestrele lor pe progres --- */
+  var LAYERS = [
+    { el: document.getElementById("shOpen"),  in: 0.00, out: 0.16 },
+    { el: document.getElementById("shBeat1"), in: 0.26, out: 0.45 },
+    { el: document.getElementById("shBeat2"), in: 0.54, out: 0.72 },
+    { el: document.getElementById("shEnd"),   in: 0.84, out: 1.01 }
+  ];
+  var FADE = 0.05;
+
+  /* --- incarcarea cadrelor --- */
+  var frames = new Array(CFG.count);
+  var loaded = 0;
+  var ready = false;
+
+  function src(i) {
+    var n = String(i + 1);
+    while (n.length < CFG.pad) n = "0" + n;
+    return CFG.path + n + CFG.ext;
+  }
+
+  function probe() {
+    // Verificam primul cadru. Daca nu exista secventa randata inca,
+    // pagina ramane un hero normal si nu se vede nimic stricat.
+    var test = new Image();
+    test.onload = function () { start(); };
+    test.onerror = function () { goStatic(); };
+    test.src = src(0);
+  }
+
+  function start() {
+    var next = 0, active = 0, CONC = 6;
+    function pump() {
+      while (active < CONC && next < CFG.count) {
+        (function (i) {
+          active++;
+          var img = new Image();
+          img.decoding = "async";
+          img.onload = img.onerror = function () {
+            frames[i] = img.naturalWidth ? img : null;
+            loaded++; active--;
+            var pct = Math.round(loaded / CFG.count * 100);
+            if (loadTx) loadTx.textContent = "SE ÎNCARCĂ " + pct + "%";
+            if (!ready && loaded >= Math.min(14, CFG.count)) {
+              ready = true;
+              loadEl.classList.add("is-done");
+              draw();
+            }
+            pump();
+          };
+          img.src = src(i);
+        })(next++);
+      }
+    }
+    pump();
+  }
+
+  /* --- desenarea, incadrare de tip contain cu marja --- */
+  var dpr = Math.min(devicePixelRatio || 1, 2);
+  var cw = 0, ch = 0;
+
+  function resize() {
+    cw = stage.clientWidth; ch = stage.clientHeight;
+    canvas.width = Math.round(cw * dpr);
+    canvas.height = Math.round(ch * dpr);
+    canvas.style.width = cw + "px";
+    canvas.style.height = ch + "px";
+    draw();
+  }
+
+  var ctx = canvas.getContext("2d", { alpha: true });
+
+  function draw() {
+    if (!ctx || !cw) return;
+    var i = Math.round(shown * (CFG.count - 1));
+    var img = frames[i];
+    // daca acel cadru nu e inca incarcat, cautam cel mai apropiat gata
+    if (!img) {
+      for (var d = 1; d < CFG.count; d++) {
+        if (frames[i - d]) { img = frames[i - d]; break; }
+        if (frames[i + d]) { img = frames[i + d]; break; }
+      }
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (!img) return;
+    var margin = cw < 760 ? 0.98 : 0.86;
+    var s = Math.min(cw / img.naturalWidth, ch / img.naturalHeight) * margin;
+    var w = img.naturalWidth * s, h = img.naturalHeight * s;
+    ctx.drawImage(img, (cw - w) / 2 * dpr, (ch - h) / 2 * dpr, w * dpr, h * dpr);
+  }
+
+  /* --- progresul: cat din sectiune a fost derulat --- */
+  var target = 0, shown = 0, running = false;
+
+  function measure() {
+    var r = sh.getBoundingClientRect();
+    var total = sh.offsetHeight - stage.offsetHeight;
+    if (total <= 0) return 0;
+    return Math.min(1, Math.max(0, -r.top / total));
+  }
+
+  function tick() {
+    target = measure();
+    // lerp: scrollul brut sacadeaza, mai ales pe trackpad
+    shown += (target - shown) * 0.14;
+    if (Math.abs(target - shown) < 0.0004) shown = target;
+
+    if (ready) draw();
+
+    var pct = shown;
+    if (railEl) railEl.style.width = (pct * 100).toFixed(2) + "%";
+    if (pctEl) pctEl.textContent =
+      String(Math.round(pct * (CFG.count - 1)) + 1).padStart(2, "0") + " / " + CFG.count;
+    if (hintEl) hintEl.style.opacity = pct > 0.04 ? 0 : "";
+
+    for (var k = 0; k < LAYERS.length; k++) {
+      var L = LAYERS[k], o = 0;
+      if (pct >= L.in - FADE && pct <= L.out + FADE) {
+        if (pct < L.in) o = (pct - (L.in - FADE)) / FADE;
+        else if (pct > L.out) o = 1 - (pct - L.out) / FADE;
+        else o = 1;
+      }
+      o = Math.max(0, Math.min(1, o));
+      L.el.style.opacity = o.toFixed(3);
+      L.el.style.transform = "translateY(" + ((1 - o) * 26).toFixed(1) + "px)";
+      L.el.classList.toggle("is-on", o > 0.5);
+    }
+    if (running) requestAnimationFrame(tick);
+  }
+
+  /* nu invartim rAF cand heroul nu e pe ecran */
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting && !running) { running = true; requestAnimationFrame(tick); }
+      else if (!e.isIntersecting) { running = false; }
+    });
+  }, { threshold: 0 }).observe(sh);
+
+  addEventListener("resize", resize, { passive: true });
+  resize();
+  probe();
+})();
 </script>
 </body>
 </html>
