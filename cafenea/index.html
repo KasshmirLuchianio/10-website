@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bloom Coffee — Cafenea de specialitate în Cluj-Napoca</title>
+<meta name="description" content="Cafea de specialitate prăjită în casă, în centrul Clujului. Filtre V60, brunch până la 14:00, wifi rapid și prize la fiecare masă. Deschis zilnic de la 8:00." />
+<meta name="theme-color" content="#FFF8F0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23C15A32'/%3E%3Ctext x='16' y='23' font-size='17' font-family='Georgia' fill='%23FFF8F0' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CafeOrCoffeeShop","name":"Bloom Coffee","priceRange":"$","telephone":"+40364123456","address":{"@type":"PostalAddress","streetAddress":"Str. Universității 4","addressLocality":"Cluj-Napoca","addressCountry":"RO"},"openingHours":"Mo-Su 08:00-20:00","servesCuisine":"Cafea de specialitate, brunch"}
+</script>
+<style>
+:root{
+  --cream:#FFF8F0; --sand:#F6E9DA; --terra:#C15A32; --terra-d:#9F4526; --ink:#2B1B12;
+  --muted:#7A6558; --green:#3F6B4E; --line:#E8D8C6;
+  --pad:clamp(1.2rem,5vw,4.5rem);
+  --disp:"Fraunces",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+section{padding:clamp(3.5rem,8vw,6.5rem) var(--pad)}
+.wrap{max-width:1120px;margin:0 auto}
+.kick{display:inline-block;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  color:var(--terra);background:var(--sand);padding:.4rem .9rem;border-radius:50px;margin-bottom:1rem}
+.btn{display:inline-block;padding:.95rem 1.8rem;border-radius:50px;font-weight:700;font-size:.95rem;transition:.25s}
+.btn--p{background:var(--terra);color:var(--cream)}
+.btn--p:hover{background:var(--terra-d);transform:translateY(-2px)}
+.btn--o{border:2px solid var(--ink);color:var(--ink)}
+.btn--o:hover{background:var(--ink);color:var(--cream)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,248,240,.92);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:space-between;padding:.9rem var(--pad);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--disp);font-size:1.5rem;font-weight:700}
+.brand em{font-style:normal;color:var(--terra)}
+.nav__links{display:flex;gap:1.7rem;font-size:.92rem;font-weight:500}
+.nav__links a:hover{color:var(--terra)}
+@media(max-width:900px){.nav__links{display:none}}
+
+.hero{position:relative;overflow:hidden}
+.hero__grid{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:920px){.hero__grid{grid-template-columns:1fr 1fr;gap:3.5rem}}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5rem)}
+.hero h1 em{font-style:italic;color:var(--terra);font-weight:500}
+.hero p.lead{font-size:1.12rem;color:var(--muted);max-width:44ch;margin:1.3rem 0 2rem}
+.hero__actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.open{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;font-weight:500}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(63,107,78,.18)}
+.cupwrap{position:relative;aspect-ratio:1;border-radius:32px;background:linear-gradient(150deg,#F0DCC6,#DFC0A2);
+  display:grid;place-items:center;overflow:hidden}
+.cupwrap::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:rgba(193,90,50,.18)}
+.cupwrap span{position:relative;font-family:var(--disp);font-style:italic;color:#8A5A3C;font-size:1.1rem}
+.sticker{position:absolute;right:-8px;bottom:22px;background:var(--green);color:var(--cream);border-radius:50%;
+  width:118px;height:118px;display:grid;place-items:center;text-align:center;font-size:.76rem;font-weight:700;
+  line-height:1.25;letter-spacing:.05em;transform:rotate(-12deg);padding:.6rem}
+
+.strip{background:var(--ink);color:var(--cream)}
+.strip .wrap{display:grid;gap:1.6rem;text-align:center}
+@media(min-width:760px){.strip .wrap{grid-template-columns:repeat(4,1fr)}}
+.strip b{display:block;font-family:var(--disp);font-size:1.9rem;color:#F0B27A}
+.strip span{font-size:.88rem;opacity:.8}
+
+.menu .mgrid{display:grid;gap:2.5rem;margin-top:2.5rem}
+@media(min-width:820px){.menu .mgrid{grid-template-columns:repeat(3,1fr)}}
+.mcard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:1.9rem}
+.mcard h3{font-size:1.5rem;color:var(--terra);margin-bottom:1.1rem}
+.mrow{display:flex;justify-content:space-between;gap:.8rem;padding:.55rem 0;font-size:.95rem;border-bottom:1px dashed var(--line)}
+.mrow:last-child{border:none}
+.mrow b{font-weight:700;white-space:nowrap}
+.mnote{font-size:.85rem;color:var(--muted);margin-top:1rem}
+
+.beans{background:var(--sand)}
+.bgrid{display:grid;gap:1.4rem;margin-top:2.5rem}
+@media(min-width:760px){.bgrid{grid-template-columns:repeat(3,1fr)}}
+.bean{background:var(--cream);border-radius:22px;padding:1.8rem;position:relative;overflow:hidden}
+.bean .orig{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--terra)}
+.bean h3{font-size:1.4rem;margin:.35rem 0 .6rem}
+.bean p{font-size:.92rem;color:var(--muted);min-height:3.2em}
+.bean .pr{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem;font-weight:700}
+.bean .pr a{background:var(--ink);color:var(--cream);border-radius:50px;padding:.45rem 1rem;font-size:.82rem}
+
+.two{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr;gap:4rem}}
+.photo{aspect-ratio:4/3;border-radius:28px;display:grid;place-items:center;font-size:.78rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(0,0,0,.35);font-weight:700;background:linear-gradient(150deg,#EADACA,#CBB39C)}
+
+.events{display:grid;gap:1rem;margin-top:2rem}
+.ev{display:flex;gap:1.2rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.3rem}
+.ev .d{background:var(--terra);color:var(--cream);border-radius:12px;width:58px;height:58px;display:grid;
+  place-items:center;text-align:center;font-weight:700;line-height:1;flex:0 0 auto}
+.ev .d b{display:block;font-size:1.3rem}
+.ev .d span{font-size:.66rem;letter-spacing:.1em}
+.ev h3{font-size:1.1rem;font-family:var(--sans);font-weight:700}
+.ev p{font-size:.88rem;color:var(--muted)}
+
+.visit{background:var(--ink);color:var(--cream)}
+.visit .two{align-items:start}
+.visit h2{font-size:clamp(1.9rem,4.5vw,3rem)}
+.visit .hours li{list-style:none;display:flex;justify-content:space-between;padding:.7rem 0;
+  border-bottom:1px solid rgba(255,248,240,.14);font-size:.95rem}
+.visit .hours li b{color:#F0B27A}
+.visit .map{margin-top:1.4rem;height:230px;border-radius:20px;background:#3A2A20;display:grid;place-items:center;
+  color:#B79A88;font-size:.8rem;letter-spacing:.2em}
+.visit a.btn--p{margin-top:1.5rem}
+
+footer{padding:2.4rem var(--pad);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.85rem;color:var(--muted);border-top:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(22px);transition:.65s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand">Bloom<em>.</em></a>
+  <div class="nav__links"><a href="#meniu">Meniu</a><a href="#cafea">Cafeaua noastră</a><a href="#loc">Locul</a><a href="#evenimente">Evenimente</a><a href="#vizita">Program</a></div>
+  <a href="#vizita" class="btn btn--p" style="padding:.6rem 1.3rem">Vino la o cafea</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="kick">Cafea prăjită în casă · Cluj-Napoca</span>
+      <h1>Dimineața ta merită <em>mai mult</em> decât cafea la pliculeț.</h1>
+      <p class="lead">Prăjim săptămânal, în spatele barului. Espresso dulce, filtre curate și un brunch care ține până la 14:00 — inclusiv sâmbăta.</p>
+      <div class="hero__actions">
+        <a href="#meniu" class="btn btn--p">Vezi meniul</a>
+        <a href="#vizita" class="btn btn--o">Cum ajungi la noi</a>
+      </div>
+      <span class="open"><i class="dot"></i> Deschis acum · astăzi până la 20:00</span>
+    </div>
+    <div class="cupwrap">
+      <span>fotografie cu latte art</span>
+      <div class="sticker">A 10-a cafea<br>e din partea<br>casei</div>
+    </div>
+  </div>
+</header>
+
+<section class="strip" style="padding-top:2.5rem;padding-bottom:2.5rem">
+  <div class="wrap">
+    <div><b>7 ani</b><span>în Piața Universității</span></div>
+    <div><b>4.9★</b><span>peste 1.400 de recenzii</span></div>
+    <div><b>Wi-Fi 500 Mbps</b><span>și priză la fiecare masă</span></div>
+    <div><b>Pet friendly</b><span>cu bol cu apă la intrare</span></div>
+  </div>
+</section>
+
+<section id="meniu" class="menu">
+  <div class="wrap">
+    <span class="kick">Meniul</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Ce bem și ce mâncăm</h2>
+    <div class="mgrid">
+      <div class="mcard reveal">
+        <h3>Espresso bar</h3>
+        <div class="mrow"><span>Espresso</span><b>9 lei</b></div>
+        <div class="mrow"><span>Cortado</span><b>12 lei</b></div>
+        <div class="mrow"><span>Flat white</span><b>15 lei</b></div>
+        <div class="mrow"><span>Cappuccino</span><b>14 lei</b></div>
+        <div class="mrow"><span>Latte cu vanilie</span><b>17 lei</b></div>
+        <div class="mrow"><span>Lapte vegetal (ovăz, migdale)</span><b>+3 lei</b></div>
+        <p class="mnote">Blend-ul de casă: Brazilia 70% + Etiopia 30%. Ciocolată cu lapte și caramel.</p>
+      </div>
+      <div class="mcard reveal">
+        <h3>Filtre & rece</h3>
+        <div class="mrow"><span>V60 / Chemex</span><b>18 lei</b></div>
+        <div class="mrow"><span>Aeropress</span><b>16 lei</b></div>
+        <div class="mrow"><span>Cold brew</span><b>16 lei</b></div>
+        <div class="mrow"><span>Espresso tonic</span><b>19 lei</b></div>
+        <div class="mrow"><span>Matcha latte</span><b>19 lei</b></div>
+        <div class="mrow"><span>Ceai de la Bio Tea Cluj</span><b>12 lei</b></div>
+        <p class="mnote">Întreabă baristul ce avem azi pe filtru — se schimbă la două zile.</p>
+      </div>
+      <div class="mcard reveal">
+        <h3>Brunch, până la 14:00</h3>
+        <div class="mrow"><span>Ouă Benedict cu somon</span><b>39 lei</b></div>
+        <div class="mrow"><span>Avocado toast cu ou poșat</span><b>34 lei</b></div>
+        <div class="mrow"><span>Pancakes cu fructe de pădure</span><b>32 lei</b></div>
+        <div class="mrow"><span>Iaurt grecesc cu granola de casă</span><b>24 lei</b></div>
+        <div class="mrow"><span>Croissant cu unt (copt la 7:30)</span><b>11 lei</b></div>
+        <div class="mrow"><span>Cheesecake de casă</span><b>19 lei</b></div>
+        <p class="mnote">Avem variante vegetariene și fără gluten la aproape tot meniul.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cafea" class="beans">
+  <div class="wrap">
+    <span class="kick">Prăjitorie</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Boabe de luat acasă</h2>
+    <div class="bgrid">
+      <div class="bean reveal"><span class="orig">Etiopia · Yirgacheffe</span><h3>Bloom Filter</h3><p>Bergamotă, piersică albă, ceai negru. Prăjire deschisă, pentru V60.</p><div class="pr"><span>250 g — 62 lei</span><a href="#">Comandă</a></div></div>
+      <div class="bean reveal"><span class="orig">Brazilia · Cerrado</span><h3>House Espresso</h3><p>Alună prăjită, ciocolată cu lapte, caramel. Merge perfect cu lapte.</p><div class="pr"><span>250 g — 54 lei</span><a href="#">Comandă</a></div></div>
+      <div class="bean reveal"><span class="orig">Columbia · Huila</span><h3>Decaf de seară</h3><p>Decofeinizat cu apă. Prună uscată, cacao, zahăr brun.</p><div class="pr"><span>250 g — 58 lei</span><a href="#">Comandă</a></div></div>
+    </div>
+    <p style="margin-top:1.6rem;color:var(--muted);font-size:.92rem">Abonament lunar: primești automat 500 g în fiecare lună, cu 15% reducere și livrare gratuită în Cluj.</p>
+  </div>
+</section>
+
+<section id="loc">
+  <div class="wrap two">
+    <div class="photo reveal">FOTO INTERIOR</div>
+    <div class="reveal">
+      <span class="kick">Locul</span>
+      <h2 style="font-size:clamp(1.9rem,4.5vw,3rem)">Un loc unde chiar poți lucra</h2>
+      <p style="color:var(--muted);margin:1.1rem 0">Optsprezece locuri la mese mari, prize peste tot, internet pe fibră și o regulă simplă: la etaj se vorbește în șoaptă.</p>
+      <p style="color:var(--muted);margin-bottom:1.1rem">Dimineața e liniște până pe la 11. După-amiaza punem discuri, dar niciodată destul de tare cât să nu-ți auzi gândurile.</p>
+      <p style="color:var(--muted)">Rezervăm etajul pentru întâlniri de echipă până în 14 persoane — scrie-ne cu o zi înainte.</p>
+    </div>
+  </div>
+</section>
+
+<section id="evenimente" style="background:var(--sand)">
+  <div class="wrap">
+    <span class="kick">Ce se întâmplă</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Evenimente în luna asta</h2>
+    <div class="events">
+      <div class="ev reveal"><div class="d"><b>12</b><span>SEP</span></div><div><h3>Cupping public — cafele din Etiopia</h3><p>Joi, 18:00 · gratuit, 12 locuri, te înscrii la bar</p></div></div>
+      <div class="ev reveal"><div class="d"><b>19</b><span>SEP</span></div><div><h3>Atelier de latte art pentru începători</h3><p>Joi, 18:00 · 120 lei de persoană, 8 locuri</p></div></div>
+      <div class="ev reveal"><div class="d"><b>27</b><span>SEP</span></div><div><h3>Seară de vinil & filtre reci</h3><p>Vineri, 19:00 · intrare liberă, până la 23:00</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="vizita" class="visit">
+  <div class="wrap two">
+    <div>
+      <span class="kick" style="background:rgba(255,248,240,.12)">Program</span>
+      <h2>Suntem aici de la 8 dimineața</h2>
+      <ul class="hours" style="margin-top:1.5rem">
+        <li><span>Luni – Vineri</span><b>08:00 – 20:00</b></li>
+        <li><span>Sâmbătă</span><b>09:00 – 20:00</b></li>
+        <li><span>Duminică</span><b>09:00 – 18:00</b></li>
+        <li><span>Brunch</span><b>până la 14:00, zilnic</b></li>
+      </ul>
+      <p style="margin-top:1.6rem;opacity:.85">Str. Universității 4, Cluj-Napoca<br>0364 123 456 · salut@bloomcoffee.ro<br>@bloomcoffee.cluj</p>
+      <a href="https://wa.me/40364123456" class="btn btn--p">Scrie-ne pe WhatsApp</a>
+    </div>
+    <div><div class="map">HARTĂ GOOGLE MAPS</div></div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Bloom Coffee SRL · Cluj-Napoca</span>
+  <span>bloomcoffee.ro · Termeni · Confidențialitate</span>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dental Nord — Clinică stomatologică Iași | Programări în 48 de ore</title>
+<meta name="description" content="Clinică stomatologică în Iași: consultație cu plan de tratament și preț fix, implanturi, ortodonție, sedare pentru pacienții anxioși. Urgențe în aceeași zi." />
+<meta name="theme-color" content="#F4FAFF" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230A9DB5'/%3E%3Ctext x='16' y='23' font-size='17' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dentist","name":"Dental Nord","telephone":"+40232700800","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Str. Palas 5A","addressLocality":"Iași","addressCountry":"RO"},"openingHours":"Mo-Fr 08:00-20:00, Sa 09:00-14:00","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"567"}}
+</script>
+<style>
+:root{
+  --sky:#F4FAFF; --teal:#0A9DB5; --teal-d:#07798C; --mint:#E3F5F7; --ink:#10242B;
+  --muted:#5D7480; --line:#DBEAF0; --white:#fff; --coral:#FF7A66;
+  --pad:clamp(1.2rem,5vw,4.5rem); --f:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:var(--f);line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{line-height:1.12;letter-spacing:-.03em;font-weight:800}
+section{padding:clamp(3.5rem,7vw,6.5rem) var(--pad)}
+.wrap{max-width:1140px;margin:0 auto}
+.kick{display:inline-block;background:var(--mint);color:var(--teal-d);font-size:.76rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;padding:.4rem .95rem;border-radius:50px;margin-bottom:1rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.8rem;border-radius:14px;font-weight:700;
+  font-size:.97rem;transition:.25s}
+.btn--p{background:var(--teal);color:#fff;box-shadow:0 12px 26px rgba(10,157,181,.28)}
+.btn--p:hover{background:var(--teal-d);transform:translateY(-2px)}
+.btn--o{border:2px solid var(--line);color:var(--ink)}
+.btn--o:hover{border-color:var(--teal);color:var(--teal)}
+
+.top{background:var(--ink);color:#BCD3DB;font-size:.82rem;padding:.5rem var(--pad);text-align:center}
+.top b{color:#fff}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:.85rem var(--pad)}
+.brand{font-size:1.35rem;font-weight:800;letter-spacing:-.04em}
+.brand span{color:var(--teal)}
+.nav__links{display:flex;gap:1.7rem;font-size:.92rem;font-weight:500;color:var(--muted)}
+.nav__links a:hover{color:var(--teal)}
+@media(max-width:960px){.nav__links{display:none}}
+
+.hero{background:linear-gradient(170deg,var(--sky),#fff 75%)}
+.hero .wrap{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:940px){.hero .wrap{grid-template-columns:1.05fr .95fr;gap:3.5rem}}
+.hero h1{font-size:clamp(2.3rem,6vw,4rem)}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero p.lead{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:1.3rem 0 2rem}
+.hero__actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.trust{display:flex;gap:1.8rem;flex-wrap:wrap;font-size:.9rem;font-weight:600;color:var(--muted)}
+.trust b{color:var(--ink)}
+.hcard{background:var(--white);border:1px solid var(--line);border-radius:26px;padding:2rem;
+  box-shadow:0 24px 60px rgba(16,36,43,.09)}
+.hcard h3{font-size:1.25rem;margin-bottom:1.1rem}
+.hcard .slot{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem 1rem;
+  border:1px solid var(--line);border-radius:14px;margin-bottom:.6rem;font-size:.93rem;transition:.2s;cursor:pointer}
+.hcard .slot:hover{border-color:var(--teal);background:var(--sky)}
+.hcard .slot b{color:var(--teal);font-size:.88rem}
+.hcard .slot.full{opacity:.45;cursor:not-allowed}
+.hcard .btn{width:100%;justify-content:center;margin-top:.8rem}
+
+.svc{display:grid;gap:1.3rem;margin-top:2.5rem}
+@media(min-width:720px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.svc{grid-template-columns:repeat(3,1fr)}}
+.s{border:1px solid var(--line);border-radius:20px;padding:1.9rem;transition:.25s;background:#fff}
+.s:hover{box-shadow:0 18px 40px rgba(10,157,181,.12);transform:translateY(-3px);border-color:var(--mint)}
+.s .ic{width:48px;height:48px;border-radius:14px;background:var(--mint);display:grid;place-items:center;margin-bottom:1rem}
+.s .ic svg{width:24px;height:24px;stroke:var(--teal);fill:none;stroke-width:1.9}
+.s h3{font-size:1.2rem;margin-bottom:.4rem}
+.s p{font-size:.93rem;color:var(--muted)}
+.s .pr{display:block;margin-top:.9rem;font-weight:800;color:var(--teal)}
+
+.fear{background:var(--ink);color:#fff}
+.fear .wrap{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:900px){.fear .wrap{grid-template-columns:1fr 1fr;gap:4rem}}
+.fear h2{font-size:clamp(1.9rem,4.5vw,3rem)}
+.fear p{color:#BCD3DB;margin:1.2rem 0}
+.fear ul{list-style:none;display:grid;gap:.8rem;margin-top:1.2rem}
+.fear li{display:flex;gap:.7rem;align-items:flex-start;font-size:.97rem}
+.fear li i{color:#6BD3E5;font-style:normal;font-weight:800}
+.fear .box{background:#18333C;border-radius:24px;padding:2rem}
+.fear .box b{display:block;font-size:2.6rem;color:#6BD3E5;line-height:1}
+.fear .box span{color:#BCD3DB;font-size:.92rem}
+.fear .box div+div{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.12)}
+
+.docs{background:var(--sky)}
+.dg{display:grid;gap:1.6rem;margin-top:2.5rem}
+@media(min-width:800px){.dg{grid-template-columns:repeat(3,1fr)}}
+.d{background:#fff;border-radius:22px;overflow:hidden;border:1px solid var(--line)}
+.d .ph{aspect-ratio:1;background:linear-gradient(150deg,#CFE9EF,#9FCBD6);display:grid;place-items:center;
+  color:rgba(16,36,43,.4);font-size:.72rem;letter-spacing:.2em;font-weight:700}
+.d .bd{padding:1.4rem}
+.d h3{font-size:1.12rem}
+.d .role{color:var(--teal);font-size:.85rem;font-weight:700;margin-bottom:.5rem}
+.d p{font-size:.9rem;color:var(--muted)}
+
+.price .row{display:flex;justify-content:space-between;gap:1.2rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.price .row:first-child{border-top:1px solid var(--line)}
+.price b{white-space:nowrap;color:var(--teal);font-weight:800}
+.price .note{font-size:.87rem;color:var(--muted);margin-top:1.1rem}
+
+.revs{display:grid;gap:1.4rem;margin-top:2.5rem}
+@media(min-width:840px){.revs{grid-template-columns:repeat(3,1fr)}}
+.r{background:var(--sky);border-radius:20px;padding:1.7rem}
+.r .st{color:#FFB020;letter-spacing:.12em;margin-bottom:.6rem}
+.r p{font-size:.95rem}
+.r b{display:block;margin-top:.9rem;font-size:.86rem;color:var(--muted)}
+
+.book{background:var(--mint)}
+.book .wrap{display:grid;gap:3rem}
+@media(min-width:900px){.book .wrap{grid-template-columns:1fr 1fr;gap:4rem}}
+.f2{margin-bottom:1rem}
+.f2 label{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:.4rem}
+.f2 input,.f2 select,.f2 textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:.85rem 1rem;font-family:inherit;font-size:.95rem;color:var(--ink)}
+.f2 input:focus,.f2 select:focus,.f2 textarea:focus{outline:none;border-color:var(--teal)}
+.two{display:grid;gap:1rem}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.side li{list-style:none;padding:1rem 0;border-bottom:1px solid rgba(16,36,43,.12);display:flex;
+  justify-content:space-between;gap:1rem;font-size:.95rem}
+.side li b{font-weight:700}
+.side li span{color:var(--muted);text-align:right}
+
+footer{padding:2.4rem var(--pad);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.85rem;color:var(--muted);border-top:1px solid var(--line)}
+.fab{position:fixed;right:1rem;bottom:1rem;z-index:60;background:var(--coral);color:#fff;font-weight:700;
+  padding:.95rem 1.35rem;border-radius:50px;box-shadow:0 12px 30px rgba(255,122,102,.42)}
+.reveal{opacity:0;transform:translateY(22px);transition:.65s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="top">Urgențe stomatologice: te primim <b>în aceeași zi</b> · 0232 700 800</div>
+
+<nav class="nav">
+  <a href="#" class="brand">Dental<span>Nord</span></a>
+  <div class="nav__links"><a href="#servicii">Servicii</a><a href="#anxietate">Ți-e frică?</a><a href="#medici">Medici</a><a href="#preturi">Prețuri</a><a href="#recenzii">Recenzii</a></div>
+  <a href="#programare" class="btn btn--p" style="padding:.6rem 1.2rem">Programează-te</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kick">Clinică stomatologică · Iași, Palas</span>
+      <h1>Îți spunem <em>tot planul și tot prețul</em> de la prima vizită.</h1>
+      <p class="lead">Consultație cu radiografie panoramică și plan de tratament scris, cu preț fix pe fiecare etapă. Fără „mai vedem pe parcurs”.</p>
+      <div class="hero__actions">
+        <a href="#programare" class="btn btn--p">Programează o consultație</a>
+        <a href="tel:+40232700800" class="btn btn--o">0232 700 800</a>
+      </div>
+      <div class="trust">
+        <span><b>4.9★</b> · 567 recenzii Google</span>
+        <span><b>14</b> ani de activitate</span>
+        <span><b>48 h</b> până la o programare</span>
+      </div>
+    </div>
+    <div class="hcard">
+      <h3>Locuri libere săptămâna aceasta</h3>
+      <div class="slot"><span>Marți, 3 septembrie</span><b>09:30 · 14:00</b></div>
+      <div class="slot"><span>Miercuri, 4 septembrie</span><b>11:00 · 17:30</b></div>
+      <div class="slot full"><span>Joi, 5 septembrie</span><b>ocupat</b></div>
+      <div class="slot"><span>Vineri, 6 septembrie</span><b>08:30 · 12:00 · 18:00</b></div>
+      <a href="#programare" class="btn btn--p">Rezervă un interval</a>
+      <p style="font-size:.82rem;color:var(--muted);margin-top:.8rem;text-align:center">Confirmăm prin SMS în maximum 2 ore.</p>
+    </div>
+  </div>
+</header>
+
+<section id="servicii">
+  <div class="wrap">
+    <span class="kick">Servicii</span>
+    <h2 style="font-size:clamp(1.9rem,4.5vw,3rem)">Tot ce ține de dinții tăi,<br>într-un singur loc</h2>
+    <div class="svc">
+      <div class="s reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4c3 0 5 2 5 5 0 4-1.5 11-3 11s-1-4-2-4-.5 4-2 4-3-7-3-11c0-3 2-5 5-5z"/></svg></div><h3>Consultație și plan</h3><p>Radiografie panoramică, examinare completă și plan de tratament scris, cu prețuri.</p><span class="pr">150 lei (gratuit la tratament)</span></div>
+      <div class="s reveal"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg></div><h3>Implanturi dentare</h3><p>Sisteme Straumann și MegaGen, cu ghid chirurgical digital. Garanție pe viață la implant.</p><span class="pr">de la 2.900 lei</span></div>
+      <div class="s reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16M9 4v16"/></svg></div><h3>Ortodonție</h3><p>Aparate fixe metalice, safir sau gutiere transparente. Simulare digitală înainte să începi.</p><span class="pr">de la 4.500 lei</span></div>
+      <div class="s reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 20V10l6-6 6 6v10"/></svg></div><h3>Coroane și fațete</h3><p>Zirconiu și ceramică E-max, realizate în laboratorul propriu, în 3–5 zile.</p><span class="pr">de la 1.200 lei</span></div>
+      <div class="s reveal"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg></div><h3>Estetică dentară</h3><p>Albire profesională într-o singură ședință, igienizare cu air-flow, remodelări.</p><span class="pr">de la 450 lei</span></div>
+      <div class="s reveal"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 9l7-6 7 6"/></svg></div><h3>Stomatologie pediatrică</h3><p>Cabinet separat pentru copii, cu medic dedicat. Prima vizită e doar de cunoaștere, fără instrumente.</p><span class="pr">de la 120 lei</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="anxietate" class="fear">
+  <div class="wrap">
+    <div>
+      <span class="kick" style="background:rgba(107,211,229,.16);color:#6BD3E5">Pentru pacienții anxioși</span>
+      <h2>Dacă ți-e frică de dentist,<br>ești exact tipul de pacient<br>pe care îl căutăm.</h2>
+      <p>Aproape jumătate dintre pacienții noi vin la noi după ani în care au amânat. Nu certăm pe nimeni și nu comentăm cum arată dinții.</p>
+      <ul>
+        <li><i>✓</i> Prima ședință poate fi doar o discuție, fără să te așezi în scaun</li>
+        <li><i>✓</i> Sedare conștientă cu protoxid de azot, pentru intervenții lungi</li>
+        <li><i>✓</i> Anestezie computerizată — nu simți înțepătura</li>
+        <li><i>✓</i> Semn stabilit dinainte: ridici mâna, ne oprim imediat</li>
+        <li><i>✓</i> Căști cu muzică sau podcast, la alegerea ta</li>
+      </ul>
+    </div>
+    <div class="box">
+      <div><b>1 din 2</b><span>pacienți noi vin după 3+ ani de amânare</span></div>
+      <div><b>0 lei</b><span>costă prima discuție, dacă vrei doar să vezi clinica</span></div>
+      <div><b>7 min</b><span>timp mediu de așteptare peste ora programată</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="medici" class="docs">
+  <div class="wrap">
+    <span class="kick">Echipa medicală</span>
+    <h2 style="font-size:clamp(1.9rem,4.5vw,3rem)">Cine te tratează</h2>
+    <div class="dg">
+      <div class="d reveal"><div class="ph">FOTOGRAFIE</div><div class="bd"><h3>Dr. Andreea Chirilă</h3><div class="role">Medic primar, implantologie</div><p>Peste 1.800 de implanturi inserate. Membru al Asociației Române de Implantologie Orală.</p></div></div>
+      <div class="d reveal"><div class="ph">FOTOGRAFIE</div><div class="bd"><h3>Dr. Ștefan Onciu</h3><div class="role">Ortodonție</div><p>Specializare Invisalign și aparate autoligaturante. Tratează adulți și adolescenți.</p></div></div>
+      <div class="d reveal"><div class="ph">FOTOGRAFIE</div><div class="bd"><h3>Dr. Maria Lupu</h3><div class="role">Pedodonție</div><p>Lucrează doar cu copii, în cabinetul dedicat de la etaj. Formare în managementul anxietății.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="preturi" class="price">
+  <div class="wrap">
+    <span class="kick">Prețuri</span>
+    <h2 style="font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:1.8rem">Le vezi înainte să intri pe ușă</h2>
+    <div class="row"><span>Consultație + radiografie panoramică + plan de tratament</span><b>150 lei</b></div>
+    <div class="row"><span>Detartraj, periaj profesional și air-flow</span><b>280 lei</b></div>
+    <div class="row"><span>Obturație (plombă) fotopolimerizabilă</span><b>de la 280 lei</b></div>
+    <div class="row"><span>Tratament de canal, per canal</span><b>de la 400 lei</b></div>
+    <div class="row"><span>Extracție simplă / molar de minte</span><b>250 / 600 lei</b></div>
+    <div class="row"><span>Implant dentar (fixtură + șurub de cicatrizare)</span><b>de la 2.900 lei</b></div>
+    <div class="row"><span>Coroană zirconiu</span><b>1.600 lei</b></div>
+    <div class="row"><span>Albire profesională, o ședință</span><b>950 lei</b></div>
+    <p class="note">Plata se poate face în rate fără dobândă, în 6 sau 12 luni. Lucrăm cu asigurările Signal Iduna, Allianz și Groupama.</p>
+  </div>
+</section>
+
+<section id="recenzii">
+  <div class="wrap">
+    <span class="kick">Recenzii</span>
+    <h2 style="font-size:clamp(1.9rem,4.5vw,3rem)">Ce spun pacienții</h2>
+    <div class="revs">
+      <div class="r reveal"><div class="st">★★★★★</div><p>Nu mai fusesem la dentist de opt ani. Nu m-a certat nimeni, mi-au explicat totul și am terminat tratamentul în două luni.</p><b>Raluca S.</b></div>
+      <div class="r reveal"><div class="st">★★★★★</div><p>Devizul de la început a fost respectat exact. Nicio surpriză, niciun cost în plus apărut pe parcurs.</p><b>Cătălin B.</b></div>
+      <div class="r reveal"><div class="st">★★★★★</div><p>Fiul meu de 5 ani cere singur să meargă la doamna doctor. Asta spune tot.</p><b>Ioana P.</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="programare" class="book">
+  <div class="wrap">
+    <div>
+      <span class="kick" style="background:#fff">Programare</span>
+      <h2 style="font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:1.2rem">Alege când îți convine</h2>
+      <form onsubmit="event.preventDefault();this.reset();alert('Cererea a fost trimisă. Îți confirmăm prin SMS în maximum 2 ore.')">
+        <div class="two"><div class="f2"><label for="n">Nume</label><input id="n" required /></div><div class="f2"><label for="t">Telefon</label><input id="t" type="tel" required /></div></div>
+        <div class="two"><div class="f2"><label for="d">Data preferată</label><input id="d" type="date" /></div>
+          <div class="f2"><label for="s">Serviciu</label><select id="s"><option>Consultație</option><option>Urgență / durere</option><option>Igienizare</option><option>Implant</option><option>Ortodonție</option><option>Copii</option></select></div>
+        </div>
+        <div class="f2"><label for="m">Mențiuni</label><textarea id="m" rows="3" placeholder="De când te doare, dacă ai anxietate, dacă iei medicamente..."></textarea></div>
+        <button class="btn btn--p" type="submit" style="border:none;cursor:pointer;font-family:inherit">Trimite cererea</button>
+      </form>
+    </div>
+    <div>
+      <ul class="side">
+        <li><b>Adresă</b><span>Str. Palas 5A, et. 2, Iași</span></li>
+        <li><b>Telefon</b><span>0232 700 800</span></li>
+        <li><b>WhatsApp</b><span>0745 700 800</span></li>
+        <li><b>Luni – Vineri</b><span>08:00 – 20:00</span></li>
+        <li><b>Sâmbătă</b><span>09:00 – 14:00</span></li>
+        <li><b>Urgențe</b><span>în aceeași zi, sunând la 0232 700 800</span></li>
+        <li><b>Parcare</b><span>gratuită 2 ore, în Palas</span></li>
+      </ul>
+      <div style="margin-top:1.5rem;height:230px;border-radius:20px;background:#fff;border:1px solid var(--line);
+        display:grid;place-items:center;color:var(--muted);font-size:.8rem;letter-spacing:.18em">HARTĂ</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Dental Nord SRL · CUI 41234567 · Autorizație sanitară DSP Iași</span>
+  <span>dentalnord.ro · Termeni · Confidențialitate · GDPR</span>
+</footer>
+
+<a class="fab" href="tel:+40232700800">Sună acum</a>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.13});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

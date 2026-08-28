@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LUMEN Beauty — Salon de coafură și beauty | Brașov</title>
+<meta name="description" content="Salon de coafură, unghii și cosmetică în centrul Brașovului. Balayage, tuns, tratamente, manichiură. Programare online în 30 de secunde, fără telefoane." />
+<meta name="theme-color" content="#1A1418" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1418'/%3E%3Ctext x='16' y='23' font-size='18' font-family='Georgia' fill='%23E7B9AE' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BeautySalon","name":"LUMEN Beauty","telephone":"+40726400500","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Str. Republicii 18","addressLocality":"Brașov","addressCountry":"RO"},"openingHours":"Tu-Sa 09:00-20:00","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"820"}}
+</script>
+<style>
+:root{
+  --dark:#1A1418; --dark-2:#241C21; --blush:#E7B9AE; --nude:#F6EDE9; --cream:#FDFAF8;
+  --ink:#2A2126; --muted:#8C7B82; --line:#EADFDA;
+  --pad:clamp(1.2rem,5vw,4.5rem); --disp:"Italiana",Georgia,serif; --sans:"Outfit",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--disp);font-weight:400;line-height:1.05;letter-spacing:.01em}
+section{padding:clamp(3.5rem,8vw,7rem) var(--pad)}
+.wrap{max-width:1140px;margin:0 auto}
+.kick{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--blush);margin-bottom:1.1rem;display:block}
+.dark .kick{color:var(--blush)}
+.btn{display:inline-block;padding:.95rem 2rem;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:500;transition:.28s;border-radius:2px}
+.btn--p{background:var(--dark);color:var(--cream)}
+.btn--p:hover{background:var(--blush);color:var(--dark)}
+.btn--b{background:var(--blush);color:var(--dark)}
+.btn--b:hover{background:var(--cream)}
+.btn--o{border:1px solid currentColor}
+.btn--o:hover{background:currentColor}
+.btn--o:hover span{color:var(--cream)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(253,250,248,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:1rem var(--pad)}
+.brand{font-family:var(--disp);font-size:1.7rem;letter-spacing:.2em}
+.nav__links{display:flex;gap:1.9rem;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
+.nav__links a:hover{color:var(--blush)}
+@media(max-width:960px){.nav__links{display:none}}
+
+.hero{background:var(--dark);color:var(--cream);position:relative;overflow:hidden;
+  padding:clamp(3.5rem,9vw,7rem) var(--pad)}
+.hero::before{content:"";position:absolute;left:-15%;top:-25%;width:65%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(231,185,174,.2),transparent 62%)}
+.hero .wrap{position:relative;z-index:2;display:grid;gap:3rem;align-items:center}
+@media(min-width:940px){.hero .wrap{grid-template-columns:1.05fr .95fr;gap:4rem}}
+.hero h1{font-size:clamp(2.8rem,8vw,5.4rem)}
+.hero h1 em{font-style:italic;color:var(--blush)}
+.hero p{color:#C9BAC0;font-size:1.08rem;max-width:44ch;margin:1.5rem 0 2.2rem}
+.hero__actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero .meta{display:flex;gap:2rem;flex-wrap:wrap;margin-top:2.6rem;padding-top:1.8rem;
+  border-top:1px solid rgba(253,250,248,.16);font-size:.85rem;color:#C9BAC0}
+.hero .meta b{display:block;font-family:var(--disp);font-size:1.7rem;color:var(--blush)}
+.portrait{aspect-ratio:3/4;background:linear-gradient(160deg,#3A2C33,#1F171C);border:1px solid rgba(231,185,174,.28);
+  display:grid;place-items:center;color:rgba(231,185,174,.5);font-size:.72rem;letter-spacing:.28em;position:relative}
+.portrait::after{content:"";position:absolute;inset:12px;border:1px solid rgba(231,185,174,.2)}
+
+.svc{background:var(--nude)}
+.sgrid{display:grid;gap:2.5rem;margin-top:3rem}
+@media(min-width:860px){.sgrid{grid-template-columns:repeat(2,1fr);gap:3rem 4rem}}
+.scol h3{font-size:1.8rem;margin-bottom:1.3rem;color:var(--ink)}
+.srow{display:flex;justify-content:space-between;gap:1.2rem;align-items:baseline;padding:.7rem 0;
+  border-bottom:1px solid var(--line)}
+.srow .nm{font-size:.98rem;font-weight:400}
+.srow .nm small{display:block;color:var(--muted);font-size:.82rem}
+.srow .pr{white-space:nowrap;font-family:var(--disp);font-size:1.15rem;color:var(--ink)}
+
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-top:2.5rem}
+@media(min-width:820px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal div{aspect-ratio:3/4;display:grid;place-items:center;font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.5)}
+.gal div:nth-child(1){background:linear-gradient(150deg,#C9A9A0,#8E7268)}
+.gal div:nth-child(2){background:linear-gradient(150deg,#3A2C33,#1F171C)}
+.gal div:nth-child(3){background:linear-gradient(150deg,#E0C6BC,#B39187);color:rgba(42,33,38,.5)}
+.gal div:nth-child(4){background:linear-gradient(150deg,#5A4650,#2E242A)}
+.gal div:nth-child(5){background:linear-gradient(150deg,#D8BCB2,#A8887D);color:rgba(42,33,38,.5)}
+.gal div:nth-child(6){background:linear-gradient(150deg,#43333B,#241C21)}
+.gal div:nth-child(7){background:linear-gradient(150deg,#EFDCD5,#C4A79C);color:rgba(42,33,38,.5)}
+.gal div:nth-child(8){background:linear-gradient(150deg,#6B5560,#332830)}
+
+.team{background:var(--dark);color:var(--cream)}
+.tg{display:grid;gap:2rem;margin-top:3rem}
+@media(min-width:800px){.tg{grid-template-columns:repeat(4,1fr)}}
+.t .ph{aspect-ratio:1;background:linear-gradient(150deg,#4A3941,#241C21);display:grid;place-items:center;
+  color:rgba(231,185,174,.45);font-size:.68rem;letter-spacing:.2em;margin-bottom:.9rem}
+.t h3{font-size:1.25rem}
+.t .role{color:var(--blush);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.4rem}
+.t p{font-size:.88rem;color:#C9BAC0}
+
+.why{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:900px){.why{grid-template-columns:1fr 1fr;gap:4rem}}
+.why ul{list-style:none;display:grid;gap:1.2rem;margin-top:1.5rem}
+.why li{display:flex;gap:1rem;align-items:flex-start;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
+.why li b{font-family:var(--disp);font-size:1.4rem;color:var(--blush);line-height:1.2;flex:0 0 auto}
+.why li span{font-size:.96rem;color:var(--muted)}
+.why li strong{display:block;color:var(--ink);font-weight:500}
+.giftcard{background:linear-gradient(140deg,#241C21,#1A1418);color:var(--cream);padding:2.4rem;
+  border:1px solid rgba(231,185,174,.3)}
+.giftcard h3{font-family:var(--disp);font-size:2rem;color:var(--blush);margin-bottom:.8rem}
+.giftcard p{color:#C9BAC0;font-size:.95rem;margin-bottom:1.6rem}
+
+.book{background:var(--nude)}
+.book .wrap{display:grid;gap:3rem}
+@media(min-width:900px){.book .wrap{grid-template-columns:1fr 1fr;gap:4rem}}
+.f{margin-bottom:1rem}
+.f label{display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.f input,.f select,.f textarea{width:100%;background:var(--cream);border:1px solid var(--line);padding:.85rem 1rem;
+  font-family:inherit;font-size:.95rem;color:var(--ink)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--blush)}
+.two{display:grid;gap:1rem}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.hours li{list-style:none;display:flex;justify-content:space-between;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.hours li b{font-weight:500}
+
+footer{background:var(--dark);color:#8C7B82;padding:2.8rem var(--pad);text-align:center;font-size:.84rem}
+footer .brand{display:block;color:var(--cream);margin-bottom:.9rem}
+.fab{position:fixed;right:1rem;bottom:1rem;z-index:60;background:var(--blush);color:var(--dark);
+  padding:.9rem 1.4rem;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  border-radius:50px;box-shadow:0 12px 30px rgba(26,20,24,.3)}
+.reveal{opacity:0;transform:translateY(24px);transition:.75s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand">LUMEN</a>
+  <div class="nav__links"><a href="#servicii">Servicii</a><a href="#lucrari">Lucrări</a><a href="#echipa">Echipa</a><a href="#despre">De ce noi</a><a href="#programare">Programare</a></div>
+  <a href="#programare" class="btn btn--p" style="padding:.6rem 1.3rem">Programează-te</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kick">Salon de coafură & beauty · Brașov</span>
+      <h1>Ieși de aici <em>exact</em> cum ai vrut.</h1>
+      <p>Începem fiecare programare cu zece minute de consultație, ca să nu ne trezim cu „nu la asta mă gândeam” la final. Culoare, tuns, unghii și îngrijire, într-un singur loc.</p>
+      <div class="hero__actions">
+        <a href="#programare" class="btn btn--b">Programare online</a>
+        <a href="#servicii" class="btn btn--o" style="color:var(--cream)"><span>Vezi serviciile</span></a>
+      </div>
+      <div class="meta">
+        <div><b>4.9★</b>820 de recenzii</div>
+        <div><b>9</b>ani în Republicii</div>
+        <div><b>6</b>specialiști</div>
+      </div>
+    </div>
+    <div class="portrait">FOTOGRAFIE EDITORIALĂ</div>
+  </div>
+</header>
+
+<section id="servicii" class="svc">
+  <div class="wrap">
+    <span class="kick" style="color:var(--muted)">Servicii și prețuri</span>
+    <h2 style="font-size:clamp(2.2rem,5.5vw,3.6rem)">Lista completă,<br>fără „depinde”</h2>
+    <div class="sgrid">
+      <div class="scol reveal">
+        <h3>Păr — culoare</h3>
+        <div class="srow"><span class="nm">Balayage<small>cu tratament de refacere inclus</small></span><span class="pr">de la 550 lei</span></div>
+        <div class="srow"><span class="nm">Vopsit rădăcină<small>culoare Wella sau Schwarzkopf</small></span><span class="pr">220 lei</span></div>
+        <div class="srow"><span class="nm">Șuvițe folie, cap întreg</span><span class="pr">de la 480 lei</span></div>
+        <div class="srow"><span class="nm">Decolorare + toner</span><span class="pr">de la 600 lei</span></div>
+        <div class="srow"><span class="nm">Corectare de culoare<small>după consultație obligatorie</small></span><span class="pr">de la 700 lei</span></div>
+      </div>
+      <div class="scol reveal">
+        <h3>Păr — tuns și styling</h3>
+        <div class="srow"><span class="nm">Tuns damă + coafat</span><span class="pr">180 lei</span></div>
+        <div class="srow"><span class="nm">Tuns bărbați</span><span class="pr">90 lei</span></div>
+        <div class="srow"><span class="nm">Coafat evenimente</span><span class="pr">de la 250 lei</span></div>
+        <div class="srow"><span class="nm">Tratament Olaplex</span><span class="pr">160 lei</span></div>
+        <div class="srow"><span class="nm">Botox capilar / keratină</span><span class="pr">de la 420 lei</span></div>
+      </div>
+      <div class="scol reveal">
+        <h3>Unghii</h3>
+        <div class="srow"><span class="nm">Manichiură cu gel lac</span><span class="pr">150 lei</span></div>
+        <div class="srow"><span class="nm">Construcție gel<small>întreținere la 3–4 săptămâni</small></span><span class="pr">220 lei</span></div>
+        <div class="srow"><span class="nm">Pedichiură completă</span><span class="pr">180 lei</span></div>
+        <div class="srow"><span class="nm">Nail art, per unghie</span><span class="pr">de la 15 lei</span></div>
+      </div>
+      <div class="scol reveal">
+        <h3>Cosmetică & sprâncene</h3>
+        <div class="srow"><span class="nm">Curățare facială completă</span><span class="pr">280 lei</span></div>
+        <div class="srow"><span class="nm">Tratament cu acid hialuronic</span><span class="pr">350 lei</span></div>
+        <div class="srow"><span class="nm">Laminare sprâncene</span><span class="pr">180 lei</span></div>
+        <div class="srow"><span class="nm">Extensii gene, set nou</span><span class="pr">de la 300 lei</span></div>
+        <div class="srow"><span class="nm">Machiaj de zi / seară</span><span class="pr">200 / 320 lei</span></div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.88rem;margin-top:1.8rem">Prețurile pentru păr variază în funcție de lungime și densitate — îți spunem suma exactă la consultația de la început, nu la casă.</p>
+  </div>
+</section>
+
+<section id="lucrari">
+  <div class="wrap">
+    <span class="kick" style="color:var(--muted)">Portofoliu</span>
+    <h2 style="font-size:clamp(2.2rem,5.5vw,3.6rem)">Lucrări din salon</h2>
+    <div class="gal">
+      <div>balayage</div><div>tuns bob</div><div>blond rece</div><div>coafură nuntă</div>
+      <div>unghii</div><div>gene</div><div>culoare cupru</div><div>machiaj</div>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem;margin-top:1.4rem">Vezi mai multe pe Instagram — @lumen.beauty.brasov</p>
+  </div>
+</section>
+
+<section id="echipa" class="team">
+  <div class="wrap">
+    <span class="kick">Echipa</span>
+    <h2 style="font-size:clamp(2.2rem,5.5vw,3.6rem)">Alege-ți specialistul</h2>
+    <div class="tg">
+      <div class="t reveal"><div class="ph">FOTO</div><div class="role">Hair stylist senior</div><h3>Ana Munteanu</h3><p>Balayage și blonduri reci. 12 ani de experiență, formare la Londra.</p></div>
+      <div class="t reveal"><div class="ph">FOTO</div><div class="role">Colorist</div><h3>Diana Sava</h3><p>Corecții de culoare și roșcate. Educator Wella pentru zona Centru.</p></div>
+      <div class="t reveal"><div class="ph">FOTO</div><div class="role">Barber</div><h3>Vlad Pop</h3><p>Tunsori bărbați, fade și barbă. Programări și sâmbăta dimineața.</p></div>
+      <div class="t reveal"><div class="ph">FOTO</div><div class="role">Tehnician unghii</div><h3>Sorina Ilie</h3><p>Construcție gel și nail art. Sterilizare în autoclav, la vedere.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="despre">
+  <div class="wrap why">
+    <div class="reveal">
+      <span class="kick" style="color:var(--muted)">De ce noi</span>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Patru lucruri pe care<br>le facem altfel</h2>
+      <ul>
+        <li><b>01</b><span><strong>Consultație înainte de foarfecă</strong>Zece minute în care ne uităm împreună la poze și îți spunem sincer ce se poate face pe părul tău.</span></li>
+        <li><b>02</b><span><strong>Prețul, spus la început</strong>Suma finală o afli înainte să începem, nu la casă.</span></li>
+        <li><b>03</b><span><strong>Programări care se respectă</strong>Un singur client pe stilist, în același interval. Nu te ținem două ore cu folia în cap.</span></li>
+        <li><b>04</b><span><strong>Retuș gratuit în 7 zile</strong>Dacă ceva nu ți se pare în regulă, revii și corectăm, fără să plătești din nou.</span></li>
+      </ul>
+    </div>
+    <div class="giftcard reveal">
+      <h3>Card cadou</h3>
+      <p>Valabil un an, pentru orice serviciu din salon. Îl trimitem pe email în format digital sau îl ridici printat, în plic.</p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem">
+        <span style="border:1px solid rgba(231,185,174,.4);padding:.5rem 1rem;font-size:.85rem">200 lei</span>
+        <span style="border:1px solid rgba(231,185,174,.4);padding:.5rem 1rem;font-size:.85rem">350 lei</span>
+        <span style="border:1px solid rgba(231,185,174,.4);padding:.5rem 1rem;font-size:.85rem">500 lei</span>
+        <span style="border:1px solid rgba(231,185,174,.4);padding:.5rem 1rem;font-size:.85rem">sumă la alegere</span>
+      </div>
+      <a href="#programare" class="btn btn--b">Comandă un card</a>
+    </div>
+  </div>
+</section>
+
+<section id="programare" class="book">
+  <div class="wrap">
+    <div>
+      <span class="kick" style="color:var(--muted)">Programare</span>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1.3rem">Îți ținem locul<br>în 30 de secunde</h2>
+      <form onsubmit="event.preventDefault();this.reset();alert('Cererea a fost trimisă. Îți confirmăm ora prin SMS.')">
+        <div class="two"><div class="f"><label for="n">Nume</label><input id="n" required /></div><div class="f"><label for="t">Telefon</label><input id="t" type="tel" required /></div></div>
+        <div class="two">
+          <div class="f"><label for="s">Serviciu</label><select id="s"><option>Tuns + coafat</option><option>Balayage / șuvițe</option><option>Vopsit</option><option>Manichiură</option><option>Cosmetică</option><option>Gene / sprâncene</option><option>Barber</option></select></div>
+          <div class="f"><label for="sp">Specialist</label><select id="sp"><option>Oricine e liber</option><option>Ana</option><option>Diana</option><option>Vlad</option><option>Sorina</option></select></div>
+        </div>
+        <div class="two"><div class="f"><label for="d">Data</label><input id="d" type="date" /></div><div class="f"><label for="o">Interval</label><select id="o"><option>Dimineața</option><option>La prânz</option><option>După-amiaza</option><option>Seara, după 17:00</option></select></div></div>
+        <div class="f"><label for="m">Mențiuni</label><textarea id="m" rows="3" placeholder="Ce ai pe păr acum, ce ți-ai dori, dacă ai poze de referință..."></textarea></div>
+        <button class="btn btn--p" type="submit" style="border:none;cursor:pointer;font-family:inherit">Trimite cererea</button>
+      </form>
+    </div>
+    <div>
+      <span class="kick" style="color:var(--muted)">Program</span>
+      <ul class="hours">
+        <li><span>Marți – Vineri</span><b>09:00 – 20:00</b></li>
+        <li><span>Sâmbătă</span><b>09:00 – 18:00</b></li>
+        <li><span>Duminică – Luni</span><b>Închis</b></li>
+      </ul>
+      <p style="color:var(--muted);margin-top:1.8rem">Str. Republicii 18, Brașov<br>0726 400 500 · salut@lumenbeauty.ro<br>@lumen.beauty.brasov</p>
+      <div style="margin-top:1.5rem;height:210px;border:1px solid var(--line);background:var(--cream);
+        display:grid;place-items:center;color:var(--muted);font-size:.75rem;letter-spacing:.22em">HARTĂ</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand">LUMEN</span>
+  © 2026 LUMEN Beauty SRL · Brașov · lumenbeauty.ro · Termeni · Confidențialitate
+</footer>
+
+<a class="fab" href="https://wa.me/40726400500">WhatsApp</a>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.13});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

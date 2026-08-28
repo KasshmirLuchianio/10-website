@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LEMNA — Mobilă la comandă din lemn masiv | Atelier Timișoara</title>
+<meta name="description" content="Mobilă la comandă din lemn masiv: bucătării, dressinguri, mese și biblioteci. Proiectare 3D gratuită, montaj inclus, garanție 10 ani. Atelier propriu în Timișoara." />
+<meta name="theme-color" content="#F7F3EC" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Karla:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%236B4A2F'/%3E%3Ctext x='16' y='23' font-size='17' font-family='Arial' font-weight='bold' fill='%23F7F3EC' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FurnitureStore","name":"LEMNA Mobilier","priceRange":"$$$","telephone":"+40745300400","address":{"@type":"PostalAddress","streetAddress":"Calea Șagului 128","addressLocality":"Timișoara","addressCountry":"RO"},"openingHours":"Mo-Fr 09:00-18:00, Sa 10:00-14:00"}
+</script>
+<style>
+:root{
+  --paper:#F7F3EC; --wood:#6B4A2F; --wood-l:#8C6746; --ink:#221A14; --muted:#6F6154;
+  --line:#E0D6C7; --olive:#5E6B4A; --white:#fff;
+  --pad:clamp(1.2rem,5vw,5rem); --disp:"Syne",system-ui,sans-serif; --sans:"Karla",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+section{padding:clamp(3.5rem,8vw,7rem) var(--pad)}
+.wrap{max-width:1180px;margin:0 auto}
+.kick{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--wood);margin-bottom:1rem;display:block}
+.btn{display:inline-block;padding:1rem 1.9rem;font-family:var(--sans);font-weight:600;font-size:.92rem;
+  letter-spacing:.03em;transition:.25s;border-radius:4px}
+.btn--p{background:var(--wood);color:var(--paper)}
+.btn--p:hover{background:var(--ink)}
+.btn--o{border:1px solid var(--ink);color:var(--ink)}
+.btn--o:hover{background:var(--ink);color:var(--paper)}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,243,236,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:1rem var(--pad)}
+.brand{font-family:var(--disp);font-size:1.4rem;font-weight:800;letter-spacing:.14em}
+.nav__links{display:flex;gap:1.8rem;font-size:.9rem}
+.nav__links a:hover{color:var(--wood)}
+@media(max-width:920px){.nav__links{display:none}}
+
+.hero{padding-top:clamp(2.5rem,6vw,4rem)}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);max-width:16ch}
+.hero .lead{font-size:1.1rem;color:var(--muted);max-width:52ch;margin:1.5rem 0 2rem}
+.hero__actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.showcase{display:grid;gap:.8rem;margin-top:3rem}
+@media(min-width:820px){.showcase{grid-template-columns:2fr 1fr 1fr;grid-template-rows:200px 200px}
+  .showcase div:first-child{grid-row:span 2}}
+.showcase div{border-radius:6px;display:grid;place-items:center;font-size:.7rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600;min-height:180px}
+.showcase div:nth-child(1){background:linear-gradient(150deg,#8C6746,#5B3F28)}
+.showcase div:nth-child(2){background:linear-gradient(150deg,#A98A6A,#7B5B3D)}
+.showcase div:nth-child(3){background:linear-gradient(150deg,#5E6B4A,#3F4A32)}
+.showcase div:nth-child(4){background:linear-gradient(150deg,#C0AE96,#93806A)}
+.showcase div:nth-child(5){background:linear-gradient(150deg,#6E5544,#432F22)}
+
+.vals{border-block:1px solid var(--line);display:grid;gap:1px;background:var(--line)}
+@media(min-width:760px){.vals{grid-template-columns:repeat(4,1fr)}}
+.vals div{background:var(--paper);padding:2rem 1.4rem}
+.vals b{font-family:var(--disp);font-size:1.05rem;display:block;margin-bottom:.3rem}
+.vals span{font-size:.9rem;color:var(--muted)}
+
+.cats{display:grid;gap:1.4rem;margin-top:2.5rem}
+@media(min-width:700px){.cats{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.cats{grid-template-columns:repeat(3,1fr)}}
+.cat{background:var(--white);border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:.3s}
+.cat:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(34,26,20,.1)}
+.cat .im{aspect-ratio:4/3;display:grid;place-items:center;font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:600}
+.cat:nth-child(1) .im{background:linear-gradient(140deg,#7B5B3D,#4E3826)}
+.cat:nth-child(2) .im{background:linear-gradient(140deg,#5E6B4A,#3C452F)}
+.cat:nth-child(3) .im{background:linear-gradient(140deg,#A98A6A,#7A6249)}
+.cat:nth-child(4) .im{background:linear-gradient(140deg,#8A7B6B,#5F5348)}
+.cat:nth-child(5) .im{background:linear-gradient(140deg,#6B4A2F,#332318)}
+.cat:nth-child(6) .im{background:linear-gradient(140deg,#B5A28C,#877359)}
+.cat .bd{padding:1.5rem}
+.cat h3{font-size:1.3rem;margin-bottom:.4rem}
+.cat p{font-size:.92rem;color:var(--muted)}
+.cat .pr{display:block;margin-top:.9rem;font-weight:600;color:var(--wood)}
+
+.proc{background:var(--ink);color:var(--paper)}
+.proc .kick{color:#C9A87F}
+.pgrid{display:grid;gap:2rem;margin-top:2.5rem}
+@media(min-width:900px){.pgrid{grid-template-columns:repeat(4,1fr)}}
+.p{border-top:1px solid rgba(247,243,236,.2);padding-top:1.2rem}
+.p b{font-family:var(--disp);font-size:2rem;color:#C9A87F;display:block;line-height:1}
+.p h3{font-size:1.15rem;margin:.5rem 0 .4rem}
+.p p{font-size:.92rem;opacity:.75}
+
+.wood{display:grid;gap:2.5rem;align-items:center}
+@media(min-width:900px){.wood{grid-template-columns:1fr 1fr;gap:4rem}}
+.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.sw{aspect-ratio:1;border-radius:6px;display:flex;align-items:flex-end;padding:.6rem;font-size:.72rem;
+  font-weight:600;color:rgba(255,255,255,.85)}
+.sw:nth-child(1){background:#C9A87F}.sw:nth-child(2){background:#8C6746}.sw:nth-child(3){background:#5B3F28}
+.sw:nth-child(4){background:#D9CBB8;color:#4B3B2A}.sw:nth-child(5){background:#6E5544}.sw:nth-child(6){background:#332318}
+
+.rev{background:var(--white);border-block:1px solid var(--line)}
+.revs{display:grid;gap:1.4rem;margin-top:2.2rem}
+@media(min-width:860px){.revs{grid-template-columns:repeat(3,1fr)}}
+.r{border-left:2px solid var(--wood);padding-left:1.3rem}
+.r p{font-size:.98rem}
+.r b{display:block;margin-top:.9rem;font-size:.85rem;color:var(--muted);font-weight:600}
+
+.quote{display:grid;gap:3rem}
+@media(min-width:900px){.quote{grid-template-columns:1.05fr .95fr;gap:4rem}}
+.f{margin-bottom:1rem}
+.f label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:.4rem}
+.f input,.f select,.f textarea{width:100%;background:var(--white);border:1px solid var(--line);padding:.85rem 1rem;
+  font-family:inherit;font-size:.95rem;border-radius:4px;color:var(--ink)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--wood)}
+.two{display:grid;gap:1rem}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.side li{list-style:none;padding:1rem 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;font-size:.95rem}
+.side li b{font-weight:600}
+.side li span{color:var(--muted);text-align:right}
+
+footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);display:flex;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand">LEMNA</a>
+  <div class="nav__links"><a href="#produse">Ce facem</a><a href="#proces">Proces</a><a href="#materiale">Materiale</a><a href="#recenzii">Clienți</a><a href="#oferta">Ofertă</a></div>
+  <a href="#oferta" class="btn btn--p" style="padding:.6rem 1.2rem">Cere ofertă</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kick">Atelier propriu · Timișoara · din 2008</span>
+    <h1>Mobilă făcută pe casa ta, nu pe un catalog.</h1>
+    <p class="lead">Măsurăm la tine acasă, îți desenăm totul în 3D și abia apoi vorbim de preț. Lemn masiv, feronerie Blum, montaj făcut de oamenii care au construit piesa.</p>
+    <div class="hero__actions">
+      <a href="#oferta" class="btn btn--p">Cere o ofertă gratuită</a>
+      <a href="#produse" class="btn btn--o">Vezi lucrări</a>
+    </div>
+    <div class="showcase">
+      <div>bucătărie stejar</div><div>dressing</div><div>bibliotecă</div><div>masă masivă</div><div>living</div>
+    </div>
+  </div>
+</header>
+
+<div class="vals">
+  <div><b>Proiect 3D gratuit</b><span>îl vezi înainte să plătești ceva</span></div>
+  <div><b>Garanție 10 ani</b><span>pe structură și feronerie</span></div>
+  <div><b>Montaj inclus</b><span>în Timișoara și pe 150 km</span></div>
+  <div><b>4–6 săptămâni</b><span>termen de execuție, scris în contract</span></div>
+</div>
+
+<section id="produse">
+  <div class="wrap">
+    <span class="kick">Ce facem</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.4rem)">Șase lucruri pe care le facem<br>foarte bine</h2>
+    <div class="cats">
+      <div class="cat reveal"><div class="im">bucătării</div><div class="bd"><h3>Bucătării</h3><p>Corpuri din pal masiv sau MDF vopsit, blat din lemn, piatră sau compozit.</p><span class="pr">de la 9.500 lei / ml montat</span></div></div>
+      <div class="cat reveal"><div class="im">dressing</div><div class="bd"><h3>Dressinguri și dulapuri</h3><p>Uși glisante sau batante, iluminare LED cu senzor, organizare interioară pe măsură.</p><span class="pr">de la 3.200 lei / mp</span></div></div>
+      <div class="cat reveal"><div class="im">living</div><div class="bd"><h3>Mobilier de living</h3><p>Biblioteci pe tot peretele, comode TV, nișe pentru șemineu.</p><span class="pr">de la 4.100 lei</span></div></div>
+      <div class="cat reveal"><div class="im">mese</div><div class="bd"><h3>Mese și scaune</h3><p>Blaturi dintr-o bucată de stejar sau frasin, cu picioare din lemn sau metal.</p><span class="pr">de la 3.800 lei</span></div></div>
+      <div class="cat reveal"><div class="im">dormitor</div><div class="bd"><h3>Dormitoare</h3><p>Paturi tapițate, tăblii din lemn, noptiere suspendate, comode.</p><span class="pr">de la 5.400 lei</span></div></div>
+      <div class="cat reveal"><div class="im">birouri</div><div class="bd"><h3>Birouri și spații comerciale</h3><p>Recepții, rafturi de prezentare, mobilier pentru cabinete și cafenele.</p><span class="pr">ofertă pe proiect</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="proces" class="proc">
+  <div class="wrap">
+    <span class="kick">Cum se întâmplă</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.4rem)">De la măsurat la montat,<br>în patru pași</h2>
+    <div class="pgrid">
+      <div class="p reveal"><b>01</b><h3>Măsurăm la tine</h3><p>Venim acasă sau pe șantier, cu telemetrul laser. Gratuit, în Timiș.</p></div>
+      <div class="p reveal"><b>02</b><h3>Proiect 3D</h3><p>Primești randări realiste și lista completă de materiale. Modificăm până îți place.</p></div>
+      <div class="p reveal"><b>03</b><h3>Execuție în atelier</h3><p>Îți trimitem poze din atelier pe parcurs. 4–6 săptămâni, cu dată fixă în contract.</p></div>
+      <div class="p reveal"><b>04</b><h3>Montaj și predare</h3><p>Montăm, reglăm fiecare ușă, curățăm după noi. Semnezi doar când ești mulțumit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="materiale">
+  <div class="wrap wood">
+    <div class="reveal">
+      <span class="kick">Materiale</span>
+      <h2 style="font-size:clamp(1.9rem,4.5vw,3rem)">Lemn care rezistă<br>și după ce ne mutăm noi</h2>
+      <p style="color:var(--muted);margin:1.2rem 0">Lucrăm stejar, frasin, nuc și paltin, uscate în camera proprie de uscare până la 8% umiditate. Fără furnir lipit peste PAL prezentat drept „masiv”.</p>
+      <p style="color:var(--muted);margin-bottom:1.2rem">Finisajele sunt uleiuri și lacuri pe bază de apă Osmo și Sayerlack, sigure pentru camerele copiilor.</p>
+      <p style="color:var(--muted)">Feronerie Blum cu amortizare, garantată pe viață de producător. Îți dăm certificatele la predare.</p>
+    </div>
+    <div class="swatches reveal">
+      <div class="sw">Stejar natur</div><div class="sw">Stejar afumat</div><div class="sw">Nuc</div>
+      <div class="sw">Frasin alb</div><div class="sw">Paltin fumuriu</div><div class="sw">Wenge</div>
+    </div>
+  </div>
+</section>
+
+<section id="recenzii" class="rev">
+  <div class="wrap">
+    <span class="kick">Clienți</span>
+    <h2 style="font-size:clamp(1.9rem,4.5vw,3rem)">Ce spun cei cu care am lucrat</h2>
+    <div class="revs">
+      <div class="r reveal"><p>„Ne-au refăcut proiectul de trei ori fără să bombăne. Bucătăria arată exact ca în randare, la milimetru.”</p><b>Familia Popescu · Dumbrăvița</b></div>
+      <div class="r reveal"><p>„Am prins termenul exact — 5 săptămâni. Montajul a durat două zile și au plecat cu tot molozul după ei.”</p><b>Alexandru T. · Timișoara</b></div>
+      <div class="r reveal"><p>„După trei ani, nicio ușă nu s-a lăsat. Am chemat pentru un reglaj și au venit gratis, în garanție.”</p><b>Ioana M. · Arad</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="oferta">
+  <div class="wrap quote">
+    <div>
+      <span class="kick">Ofertă</span>
+      <h2 style="font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:1.2rem">Spune-ne ce ai în cap</h2>
+      <p style="color:var(--muted);margin-bottom:1.8rem">Răspundem în maximum 24 de ore lucrătoare, cu un interval de preț realist. Dacă ai deja schițe sau poze, atașează-le pe email.</p>
+      <form onsubmit="event.preventDefault();this.reset();alert('Mulțumim! Te contactăm în maximum 24 de ore.')">
+        <div class="two"><div class="f"><label for="n">Nume</label><input id="n" required /></div><div class="f"><label for="t">Telefon</label><input id="t" type="tel" required /></div></div>
+        <div class="two">
+          <div class="f"><label for="p">Ce te interesează</label><select id="p"><option>Bucătărie</option><option>Dressing / dulap</option><option>Living / bibliotecă</option><option>Dormitor</option><option>Masă / scaune</option><option>Spațiu comercial</option></select></div>
+          <div class="f"><label for="b">Buget estimat</label><select id="b"><option>sub 10.000 lei</option><option>10.000 – 25.000 lei</option><option>25.000 – 50.000 lei</option><option>peste 50.000 lei</option><option>încă nu știu</option></select></div>
+        </div>
+        <div class="f"><label for="l">Localitate</label><input id="l" placeholder="Ex: Timișoara, zona Soarelui" /></div>
+        <div class="f"><label for="d">Detalii</label><textarea id="d" rows="4" placeholder="Dimensiuni aproximative, stil, când ai vrea să fie gata..."></textarea></div>
+        <button class="btn btn--p" type="submit" style="cursor:pointer;border:none;font-family:inherit">Trimite cererea</button>
+      </form>
+    </div>
+    <div>
+      <ul class="side">
+        <li><b>Showroom</b><span>Calea Șagului 128, Timișoara</span></li>
+        <li><b>Telefon</b><span>0745 300 400</span></li>
+        <li><b>Email</b><span>oferte@lemna.ro</span></li>
+        <li><b>Luni – Vineri</b><span>09:00 – 18:00</span></li>
+        <li><b>Sâmbătă</b><span>10:00 – 14:00</span></li>
+        <li><b>Deplasare măsurători</b><span>gratuită în județul Timiș</span></li>
+      </ul>
+      <div style="margin-top:1.5rem;height:230px;border:1px solid var(--line);border-radius:6px;
+        background:linear-gradient(140deg,#EFE7DA,#DDD1BF);display:grid;place-items:center;color:var(--muted);
+        font-size:.78rem;letter-spacing:.2em">HARTĂ SHOWROOM</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 LEMNA Mobilier SRL · CUI 23456789 · Timișoara</span>
+  <span>lemna.ro · Termeni · Confidențialitate · ANPC</span>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.13});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

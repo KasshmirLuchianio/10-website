@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Casa Verde — Restaurant cu bucătărie românească contemporană | București</title>
+<meta name="description" content="Restaurant în centrul vechi al Bucureștiului. Bucătărie românească reinterpretată, meniu de sezon, grădină de vară. Rezervări online, prânz de la 45 lei." />
+<meta name="theme-color" content="#14211B" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2314211B'/%3E%3Ctext x='16' y='23' font-size='17' font-family='Georgia' fill='%23C9A55C' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Casa Verde","servesCuisine":"Românească contemporană","priceRange":"$$","telephone":"+40740555777","address":{"@type":"PostalAddress","streetAddress":"Str. Franceză 22","addressLocality":"București","addressCountry":"RO"},"acceptsReservations":"True","openingHours":"Mo-Su 12:00-23:00","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"1043"}}
+</script>
+<style>
+:root{
+  --bg:#14211B; --bg2:#1B2C24; --cream:#F4EFE6; --gold:#C9A55C; --muted:#9FAEA4;
+  --line:rgba(244,239,230,.14);
+  --pad:clamp(1.2rem,5vw,5rem);
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:.005em}
+section{padding:clamp(4rem,9vw,7.5rem) var(--pad)}
+.wrap{max-width:1120px;margin:0 auto}
+.kicker{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.rule{width:56px;height:1px;background:var(--gold);margin:1.4rem 0}
+.center{text-align:center}.center .rule{margin:1.4rem auto}
+.btn{display:inline-block;padding:.95rem 2.1rem;border:1px solid var(--gold);color:var(--gold);
+  font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;transition:.3s}
+.btn:hover{background:var(--gold);color:var(--bg)}
+.btn--solid{background:var(--gold);color:var(--bg)}
+.btn--solid:hover{background:transparent;color:var(--gold)}
+
+.nav{position:fixed;top:0;left:0;width:100%;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem var(--pad);transition:.4s}
+.nav.solid{background:rgba(20,33,27,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--serif);font-size:1.5rem;letter-spacing:.16em;text-transform:uppercase}
+.nav__links{display:flex;gap:2rem;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase}
+.nav__links a{opacity:.82}.nav__links a:hover{opacity:1;color:var(--gold)}
+@media(max-width:900px){.nav__links{display:none}}
+
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:6rem var(--pad) 4rem;position:relative;
+  background:radial-gradient(80% 60% at 50% 30%,#20362C,#14211B 70%)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.35;
+  background-image:radial-gradient(circle at 20% 30%,rgba(201,165,92,.16),transparent 40%),radial-gradient(circle at 80% 70%,rgba(201,165,92,.1),transparent 45%)}
+.hero__in{position:relative;z-index:2;max-width:760px}
+.hero h1{font-size:clamp(3rem,10vw,6.5rem);margin-bottom:.4rem}
+.hero .sub{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.7rem);color:var(--gold);font-style:italic;margin-bottom:1.6rem}
+.hero p{color:var(--muted);max-width:50ch;margin:0 auto 2.4rem}
+.hero__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.68rem;letter-spacing:.3em;color:var(--muted);z-index:2}
+
+.about{display:grid;gap:3rem;align-items:center}
+@media(min-width:900px){.about{grid-template-columns:1fr 1fr;gap:4.5rem}}
+.about p{color:var(--muted);margin-bottom:1.1rem}
+.frame{aspect-ratio:4/5;background:linear-gradient(150deg,#263D31,#16241D);border:1px solid var(--line);
+  display:grid;place-items:center;position:relative}
+.frame::after{content:"";position:absolute;inset:14px;border:1px solid rgba(201,165,92,.35)}
+.frame span{font-family:var(--serif);font-size:1.1rem;color:var(--gold);opacity:.7;font-style:italic}
+
+.menu{background:var(--bg2)}
+.mgrid{display:grid;gap:3rem;margin-top:3rem}
+@media(min-width:860px){.mgrid{grid-template-columns:1fr 1fr;gap:3rem 4.5rem}}
+.mcol h3{font-size:1.7rem;color:var(--gold);margin-bottom:1.4rem;letter-spacing:.05em}
+.item{display:flex;justify-content:space-between;gap:1.2rem;align-items:baseline;margin-bottom:1.3rem}
+.item .dots{flex:1;border-bottom:1px dotted rgba(244,239,230,.25);transform:translateY(-4px)}
+.item .nm{font-family:var(--serif);font-size:1.22rem}
+.item .ds{display:block;font-size:.82rem;color:var(--muted);letter-spacing:.02em;line-height:1.5}
+.item .pr{font-family:var(--serif);font-size:1.2rem;color:var(--gold);white-space:nowrap}
+
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-top:2.5rem}
+@media(min-width:800px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal div{aspect-ratio:1;border:1px solid var(--line);display:grid;place-items:center;font-size:.72rem;
+  letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.gal div:nth-child(1){background:linear-gradient(140deg,#2A4436,#1A2C23)}
+.gal div:nth-child(2){background:linear-gradient(140deg,#3B3324,#20241D)}
+.gal div:nth-child(3){background:linear-gradient(140deg,#22382D,#182821)}
+.gal div:nth-child(4){background:linear-gradient(140deg,#443A26,#242119)}
+.gal div:nth-child(5){background:linear-gradient(140deg,#1F3128,#28402F)}
+.gal div:nth-child(6){background:linear-gradient(140deg,#2E2A1E,#3A3324)}
+.gal div:nth-child(7){background:linear-gradient(140deg,#1B2C24,#2A4436)}
+.gal div:nth-child(8){background:linear-gradient(140deg,#33301F,#1E241D)}
+
+.quote{text-align:center;background:var(--bg2)}
+.quote blockquote{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.4rem);font-style:italic;max-width:22ch;margin:0 auto;line-height:1.3}
+.quote cite{display:block;margin-top:1.6rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--gold);font-style:normal}
+
+.res{display:grid;gap:3rem}
+@media(min-width:900px){.res{grid-template-columns:1fr 1fr;gap:4.5rem}}
+.f{margin-bottom:1.1rem}
+.f label{display:block;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+.f input,.f select,.f textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+  color:var(--cream);padding:.6rem 0;font-family:inherit;font-size:1rem}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gold)}
+.f select option{background:var(--bg)}
+.two{display:grid;gap:1.1rem}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.hours li{list-style:none;display:flex;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.hours li span:last-child{color:var(--gold)}
+
+footer{padding:3rem var(--pad);border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.82rem}
+footer .brand{display:block;margin-bottom:1rem;color:var(--cream)}
+.reveal{opacity:0;transform:translateY(26px);transition:.8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#" class="brand">Casa Verde</a>
+  <div class="nav__links"><a href="#povestea">Povestea</a><a href="#meniu">Meniu</a><a href="#galerie">Galerie</a><a href="#rezervare">Rezervări</a></div>
+  <a href="#rezervare" class="btn" style="padding:.6rem 1.4rem">Rezervă</a>
+</nav>
+
+<header class="hero">
+  <div class="hero__in">
+    <p class="kicker">Str. Franceză 22 · Centrul Vechi, București</p>
+    <h1>Casa Verde</h1>
+    <p class="sub">Bucătărie românească, citită din nou</p>
+    <p>Rețete de acasă gătite cu tehnică de restaurant, dintr-un meniu care se schimbă la fiecare sezon. Grădină de vară cu 40 de locuri, la doi pași de Curtea Veche.</p>
+    <div class="hero__btns">
+      <a href="#rezervare" class="btn btn--solid">Rezervă o masă</a>
+      <a href="#meniu" class="btn">Vezi meniul</a>
+    </div>
+  </div>
+  <span class="scroll">DERULEAZĂ</span>
+</header>
+
+<section id="povestea">
+  <div class="wrap about">
+    <div class="reveal">
+      <p class="kicker">Povestea noastră</p>
+      <h2 style="font-size:clamp(2rem,5vw,3.4rem)">Gătim ce mâncam<br>la bunici. Doar că altfel.</h2>
+      <div class="rule"></div>
+      <p>Am deschis Casa Verde în 2014, cu opt mese și o singură idee: mâncarea românească merită tratată cu aceeași grijă ca o bucătărie franțuzească.</p>
+      <p>Lucrăm cu doisprezece producători mici din Argeș, Sibiu și Delta Dunării. Ce nu găsim proaspăt în ziua aceea, nu punem în meniu — de aceea meniul e scurt și se schimbă des.</p>
+      <p>Chef Ana Marin conduce bucătăria din 2019, după șapte ani petrecuți în restaurante cu stea din Copenhaga și Lyon.</p>
+    </div>
+    <div class="frame reveal"><span>fotografie interior</span></div>
+  </div>
+</section>
+
+<section id="meniu" class="menu">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker">Meniul de toamnă</p>
+      <h2 style="font-size:clamp(2rem,5vw,3.4rem)">O selecție din carte</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="mgrid">
+      <div class="mcol reveal">
+        <h3>Începuturi</h3>
+        <div class="item"><span class="nm">Salată de vinete afumate<span class="ds">cu roșii coapte, busuioc și ulei de nucă</span></span><span class="dots"></span><span class="pr">32 lei</span></div>
+        <div class="item"><span class="nm">Ciorbă de burtă<span class="ds">cu smântână de la Bran și ardei iute murat</span></span><span class="dots"></span><span class="pr">36 lei</span></div>
+        <div class="item"><span class="nm">Chiftele de pește din Deltă<span class="ds">cu maioneză de usturoi copt</span></span><span class="dots"></span><span class="pr">42 lei</span></div>
+        <div class="item"><span class="nm">Papanași sărați cu telemea<span class="ds">urda de oaie, mărar, miere de salcâm</span></span><span class="dots"></span><span class="pr">38 lei</span></div>
+      </div>
+      <div class="mcol reveal">
+        <h3>Feluri principale</h3>
+        <div class="item"><span class="nm">Sarmale în foi de viță<span class="ds">gătite 6 ore, mămăligă cu unt și smântână</span></span><span class="dots"></span><span class="pr">64 lei</span></div>
+        <div class="item"><span class="nm">Rață pe varză călită<span class="ds">cu gutui coapte și jus de cimbru</span></span><span class="dots"></span><span class="pr">89 lei</span></div>
+        <div class="item"><span class="nm">Păstrăv de munte la tigaie<span class="ds">unt de leurdă, cartofi noi, lămâie arsă</span></span><span class="dots"></span><span class="pr">78 lei</span></div>
+        <div class="item"><span class="nm">Tocană de ciuperci de pădure<span class="ds">mămăligă la ceaun, brânză frământată (vegetarian)</span></span><span class="dots"></span><span class="pr">56 lei</span></div>
+      </div>
+      <div class="mcol reveal">
+        <h3>Dulciuri</h3>
+        <div class="item"><span class="nm">Papanași cu dulceață de afine<span class="ds">smântână bătută în casă</span></span><span class="dots"></span><span class="pr">34 lei</span></div>
+        <div class="item"><span class="nm">Cremă de zahăr ars<span class="ds">cu vanilie de Madagascar</span></span><span class="dots"></span><span class="pr">28 lei</span></div>
+        <div class="item"><span class="nm">Plăcintă cu mere și scorțișoară<span class="ds">înghețată de smântână</span></span><span class="dots"></span><span class="pr">30 lei</span></div>
+      </div>
+      <div class="mcol reveal">
+        <h3>Vinuri românești</h3>
+        <div class="item"><span class="nm">Fetească Regală, Dealu Mare<span class="ds">pahar / sticlă</span></span><span class="dots"></span><span class="pr">26 / 120 lei</span></div>
+        <div class="item"><span class="nm">Fetească Neagră, Drăgășani<span class="ds">pahar / sticlă</span></span><span class="dots"></span><span class="pr">32 / 150 lei</span></div>
+        <div class="item"><span class="nm">Cramă Oprișor, Cabernet<span class="ds">sticlă</span></span><span class="dots"></span><span class="pr">185 lei</span></div>
+        <div class="item"><span class="nm">Meniul zilei, luni–vineri, 12:00–16:00<span class="ds">supă, fel principal, desert</span></span><span class="dots"></span><span class="pr">45 lei</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galerie">
+  <div class="wrap center">
+    <p class="kicker">Galerie</p>
+    <h2 style="font-size:clamp(2rem,5vw,3.4rem)">Cum arată o seară la noi</h2>
+    <div class="rule"></div>
+    <div class="gal">
+      <div>preparat 01</div><div>sală</div><div>grădina</div><div>bucătărie</div>
+      <div>desert</div><div>bar</div><div>terasă seara</div><div>echipa</div>
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="wrap">
+    <blockquote>„Cele mai bune sarmale pe care le-am mâncat în afara casei mamei.”</blockquote>
+    <cite>Ziarul Gastronomic · 2025</cite>
+  </div>
+</section>
+
+<section id="rezervare">
+  <div class="wrap res">
+    <div>
+      <p class="kicker">Rezervări</p>
+      <h2 style="font-size:clamp(2rem,5vw,3rem)">Ne bucurăm să te avem la masă</h2>
+      <div class="rule"></div>
+      <form onsubmit="event.preventDefault();this.reset();alert('Rezervare trimisă. Îți confirmăm prin SMS în câteva minute.')">
+        <div class="two"><div class="f"><label for="n">Nume</label><input id="n" required /></div><div class="f"><label for="t">Telefon</label><input id="t" type="tel" required /></div></div>
+        <div class="two"><div class="f"><label for="d">Data</label><input id="d" type="date" required /></div><div class="f"><label for="o">Ora</label><input id="o" type="time" required /></div></div>
+        <div class="two">
+          <div class="f"><label for="p">Persoane</label><select id="p"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></div>
+          <div class="f"><label for="z">Zonă</label><select id="z"><option>Sala interioară</option><option>Grădina de vară</option><option>Nu contează</option></select></div>
+        </div>
+        <div class="f"><label for="m">Mențiuni</label><textarea id="m" rows="2" placeholder="Aniversare, alergii, scaun pentru copil..."></textarea></div>
+        <button class="btn btn--solid" type="submit" style="margin-top:1rem;cursor:pointer;font-family:inherit">Trimite rezervarea</button>
+      </form>
+    </div>
+    <div>
+      <p class="kicker">Program</p>
+      <ul class="hours">
+        <li><span>Luni – Joi</span><span>12:00 – 23:00</span></li>
+        <li><span>Vineri – Sâmbătă</span><span>12:00 – 01:00</span></li>
+        <li><span>Duminică</span><span>12:00 – 22:00</span></li>
+        <li><span>Prânzul zilei</span><span>12:00 – 16:00</span></li>
+      </ul>
+      <p class="kicker" style="margin-top:2.5rem">Unde ne găsești</p>
+      <p style="color:var(--muted)">Str. Franceză 22, Centrul Vechi<br>București, Sector 3<br><br>Telefon: 0740 555 777<br>rezervari@casaverde.ro</p>
+      <div style="margin-top:1.6rem;height:200px;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:.78rem;letter-spacing:.2em">HARTĂ</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand">Casa Verde</span>
+  © 2026 Casa Verde SRL · casaverde.ro · Str. Franceză 22, București
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>60));
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

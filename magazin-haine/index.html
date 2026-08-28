@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NORD Studio — Haine făcute în România | Colecția de toamnă</title>
+<meta name="description" content="Piese esențiale croite în România din bumbac organic și lână. Colecția de toamnă, ediții limitate, livrare gratuită peste 300 lei și retur în 30 de zile." />
+<meta name="theme-color" content="#FFFFFF" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='22' font-size='16' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ClothingStore","name":"NORD Studio","url":"https://nordstudio.ro","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Str. Mendeleev 7","addressLocality":"București","addressCountry":"RO"},"openingHours":"Mo-Sa 10:00-20:00"}
+</script>
+<style>
+:root{
+  --ink:#111111; --paper:#FFFFFF; --sand:#F1EEE9; --muted:#6E6A65; --line:#E3DFD9; --accent:#C4402C;
+  --pad:clamp(1.1rem,4vw,3.5rem); --f:"Archivo",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);color:var(--ink);background:var(--paper);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{line-height:1;letter-spacing:-.035em;font-weight:900;text-transform:uppercase}
+section{padding:clamp(3rem,6vw,5.5rem) var(--pad)}
+.wrap{max-width:1400px;margin:0 auto}
+.small{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.btn{display:inline-block;padding:1rem 2rem;background:var(--ink);color:#fff;font-size:.78rem;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:.25s;border:1px solid var(--ink)}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn--out{background:transparent;color:var(--ink)}
+.btn--out:hover{background:var(--ink);color:#fff}
+
+.marquee{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:.6rem 0}
+.marquee div{display:inline-block;animation:m 26s linear infinite;font-size:.72rem;letter-spacing:.18em;font-weight:700}
+.marquee span{padding:0 2rem}
+@keyframes m{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee div{animation:none}}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:1rem var(--pad)}
+.brand{font-size:1.5rem;font-weight:900;letter-spacing:-.05em}
+.nav__links{display:flex;gap:1.8rem}
+.nav__links a{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.nav__links a:hover{color:var(--accent)}
+.nav__r{display:flex;gap:1.2rem;align-items:center;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.bag{background:var(--ink);color:#fff;border-radius:50px;padding:.4rem .9rem}
+@media(max-width:900px){.nav__links{display:none}}
+
+.hero{display:grid;min-height:82vh}
+@media(min-width:960px){.hero{grid-template-columns:1.15fr .85fr}}
+.hero__txt{padding:clamp(2.5rem,6vw,5rem) var(--pad);display:flex;flex-direction:column;justify-content:center;background:var(--sand)}
+.hero h1{font-size:clamp(3rem,9vw,7rem);margin:1rem 0}
+.hero h1 em{font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em}
+.hero p{max-width:44ch;color:var(--muted);margin-bottom:2rem}
+.hero__actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero__img{background:linear-gradient(160deg,#D8D2C8,#B9B2A6);display:grid;place-items:center;min-height:50vh;position:relative}
+.hero__img::after{content:"FOTO CAMPANIE";font-size:.7rem;letter-spacing:.3em;color:rgba(0,0,0,.4);font-weight:700}
+.hero__img span{position:absolute;left:1.5rem;bottom:1.5rem;background:var(--accent);color:#fff;
+  padding:.5rem 1rem;font-size:.7rem;letter-spacing:.15em;font-weight:700}
+
+.bar{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
+@media(min-width:820px){.bar{grid-template-columns:repeat(4,1fr)}}
+.bar div{background:#fff;padding:1.6rem 1.2rem;text-align:center}
+.bar b{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.bar span{font-size:.82rem;color:var(--muted)}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
+.head h2{font-size:clamp(1.8rem,4.5vw,3rem)}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap}
+.filters button{border:1px solid var(--line);background:#fff;padding:.5rem 1rem;font:inherit;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:.2s}
+.filters button.on,.filters button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.prods{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem 1rem}
+@media(min-width:760px){.prods{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1120px){.prods{grid-template-columns:repeat(4,1fr)}}
+.p{cursor:pointer}
+.p__img{aspect-ratio:3/4;position:relative;display:grid;place-items:center;overflow:hidden;margin-bottom:.8rem}
+.p__img i{font-style:normal;font-size:.68rem;letter-spacing:.22em;color:rgba(0,0,0,.35);font-weight:700}
+.p:hover .p__img i{transform:scale(1.04)}
+.p__img i{transition:.5s}
+.p__badge{position:absolute;top:.7rem;left:.7rem;background:#fff;padding:.28rem .6rem;font-size:.62rem;letter-spacing:.14em;font-weight:700}
+.p__badge--new{background:var(--accent);color:#fff}
+.p h3{font-size:.9rem;letter-spacing:0;text-transform:none;font-weight:700;margin-bottom:.15rem}
+.p .pr{font-size:.9rem;font-weight:500}
+.p .old{color:var(--muted);text-decoration:line-through;margin-left:.4rem;font-size:.82rem}
+.p .sz{margin-top:.4rem;font-size:.68rem;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.c1{background:linear-gradient(150deg,#E8E3DB,#CFC7BA)}
+.c2{background:linear-gradient(150deg,#2C3238,#171A1E)}
+.c3{background:linear-gradient(150deg,#D9C9B6,#B79C7F)}
+.c4{background:linear-gradient(150deg,#C9D2CC,#98A79F)}
+.c5{background:linear-gradient(150deg,#EDE7DE,#D6CBBB)}
+.c6{background:linear-gradient(150deg,#3A2E2A,#211A17)}
+.c7{background:linear-gradient(150deg,#BFC7D2,#8C97A6)}
+.c8{background:linear-gradient(150deg,#E2D6CE,#C0A99C)}
+.c2 i,.c6 i{color:rgba(255,255,255,.5)}
+
+.split{display:grid;gap:0}
+@media(min-width:900px){.split{grid-template-columns:1fr 1fr}}
+.split__img{min-height:60vh;background:linear-gradient(140deg,#1B1E22,#2E3339);display:grid;place-items:center;
+  color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:.3em;font-weight:700}
+.split__txt{background:var(--sand);padding:clamp(2.5rem,6vw,5rem);display:flex;flex-direction:column;justify-content:center}
+.split__txt h2{font-size:clamp(1.9rem,4.5vw,3.2rem);margin-bottom:1.2rem}
+.split__txt p{color:var(--muted);margin-bottom:1rem;max-width:46ch}
+
+.news{background:var(--ink);color:#fff;text-align:center}
+.news h2{font-size:clamp(1.8rem,4.5vw,3rem);margin-bottom:.8rem}
+.news p{color:#A9A49E;margin-bottom:2rem}
+.news form{display:flex;gap:.6rem;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.news input{flex:1;min-width:220px;background:transparent;border:1px solid #3A3733;color:#fff;padding:1rem;font:inherit}
+.news input:focus{outline:none;border-color:#fff}
+.news button{background:#fff;color:var(--ink);border:none;padding:1rem 1.8rem;font:inherit;font-size:.78rem;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;cursor:pointer}
+
+footer{padding:3rem var(--pad) 2rem;border-top:1px solid var(--line)}
+.fgrid{display:grid;gap:2rem}
+@media(min-width:760px){.fgrid{grid-template-columns:2fr 1fr 1fr 1fr}}
+.fgrid h4{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.9rem}
+.fgrid a,.fgrid p{display:block;color:var(--muted);font-size:.88rem;margin-bottom:.4rem}
+.fbot{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(20px);transition:.6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="marquee"><div><span>LIVRARE GRATUITĂ PESTE 300 LEI</span><span>·</span><span>RETUR ÎN 30 DE ZILE</span><span>·</span><span>CROIT ÎN ROMÂNIA</span><span>·</span><span>COLECȚIA DE TOAMNĂ E AICI</span><span>·</span><span>LIVRARE GRATUITĂ PESTE 300 LEI</span><span>·</span><span>RETUR ÎN 30 DE ZILE</span><span>·</span><span>CROIT ÎN ROMÂNIA</span><span>·</span><span>COLECȚIA DE TOAMNĂ E AICI</span><span>·</span></div></div>
+
+<nav class="nav">
+  <a href="#" class="brand">NORD</a>
+  <div class="nav__links"><a href="#colectie">Colecția nouă</a><a href="#colectie">Femei</a><a href="#colectie">Bărbați</a><a href="#despre">Despre</a><a href="#contact">Magazin</a></div>
+  <div class="nav__r"><a href="#">Caută</a><a href="#">Cont</a><a href="#" class="bag">Coș (0)</a></div>
+</nav>
+
+<header class="hero">
+  <div class="hero__txt">
+    <span class="small" style="color:var(--accent)">Colecția Toamnă / Iarnă 2026</span>
+    <h1>Mai puține<br>haine. <em>mai bune.</em></h1>
+    <p>Douăzeci și patru de piese croite la Sibiu, din bumbac organic și lână merinos. Fără sezoane inventate, fără reduceri false.</p>
+    <div class="hero__actions">
+      <a href="#colectie" class="btn">Vezi colecția</a>
+      <a href="#despre" class="btn btn--out">Cum producem</a>
+    </div>
+  </div>
+  <div class="hero__img"><span>NOU ÎN STOC</span></div>
+</header>
+
+<div class="bar">
+  <div><b>Livrare gratuită</b><span>la comenzi peste 300 lei</span></div>
+  <div><b>Retur 30 de zile</b><span>fără să dai explicații</span></div>
+  <div><b>Croit în România</b><span>atelier propriu la Sibiu</span></div>
+  <div><b>Plata la livrare</b><span>sau card, în rate fără dobândă</span></div>
+</div>
+
+<section id="colectie">
+  <div class="wrap">
+    <div class="head">
+      <h2>Colecția de toamnă</h2>
+      <div class="filters"><button class="on">Toate</button><button>Tricotaje</button><button>Cămăși</button><button>Paltoane</button><button>Pantaloni</button></div>
+    </div>
+    <div class="prods">
+      <article class="p reveal"><div class="p__img c1"><span class="p__badge p__badge--new">NOU</span><i>PRODUS 01</i></div><h3>Pulover lână merinos, ecru</h3><div class="pr">449 lei</div><div class="sz">XS · S · M · L · XL</div></article>
+      <article class="p reveal"><div class="p__img c2"><i>PRODUS 02</i></div><h3>Palton lână, antracit</h3><div class="pr">1.290 lei</div><div class="sz">S · M · L</div></article>
+      <article class="p reveal"><div class="p__img c3"><span class="p__badge">ULTIMELE 4</span><i>PRODUS 03</i></div><h3>Cămașă in, camel</h3><div class="pr">329 lei</div><div class="sz">S · M · L · XL</div></article>
+      <article class="p reveal"><div class="p__img c4"><i>PRODUS 04</i></div><h3>Cardigan tricotat, salvie</h3><div class="pr">389 lei<span class="old">459 lei</span></div><div class="sz">XS · S · M</div></article>
+      <article class="p reveal"><div class="p__img c5"><i>PRODUS 05</i></div><h3>Tricou bumbac organic, nisip</h3><div class="pr">149 lei</div><div class="sz">XS · S · M · L · XL</div></article>
+      <article class="p reveal"><div class="p__img c6"><span class="p__badge p__badge--new">NOU</span><i>PRODUS 06</i></div><h3>Pantaloni lână, maro închis</h3><div class="pr">499 lei</div><div class="sz">S · M · L · XL</div></article>
+      <article class="p reveal"><div class="p__img c7"><i>PRODUS 07</i></div><h3>Fular cașmir, gri fum</h3><div class="pr">279 lei</div><div class="sz">Mărime unică</div></article>
+      <article class="p reveal"><div class="p__img c8"><i>PRODUS 08</i></div><h3>Rochie midi, cărămiziu</h3><div class="pr">579 lei</div><div class="sz">XS · S · M · L</div></article>
+    </div>
+    <div style="text-align:center;margin-top:2.8rem"><a href="#" class="btn btn--out">Vezi toate cele 24 de piese</a></div>
+  </div>
+</section>
+
+<section id="despre" class="split" style="padding:0">
+  <div class="split__img">FOTO ATELIER</div>
+  <div class="split__txt">
+    <span class="small" style="color:var(--accent)">Atelierul</span>
+    <h2>Știm numele<br>fiecărei croitorese</h2>
+    <p>Producem la Sibiu, într-un atelier cu unsprezece oameni, în serii de maximum 120 de bucăți. Nu externalizăm nimic în afara țării.</p>
+    <p>Materialele vin din Italia și Portugalia, certificate GOTS. Fiecare piesă are pe etichetă inițialele persoanei care a croit-o.</p>
+    <p>Dacă un nasture cedează în primul an, îl reparăm noi, gratuit. Trimiți piesa cu AWB-ul nostru și o primești înapoi în zece zile.</p>
+    <a href="#contact" class="btn" style="align-self:flex-start;margin-top:1rem">Vino în showroom</a>
+  </div>
+</section>
+
+<section class="news">
+  <div class="wrap">
+    <h2>Primești primul acces</h2>
+    <p>Anunțăm colecțiile noi cu 48 de ore înainte de public. Fără spam, maximum două emailuri pe lună.</p>
+    <form onsubmit="event.preventDefault();this.reset();alert('Te-ai abonat. Bine ai venit!')">
+      <input type="email" placeholder="Adresa ta de email" required /><button type="submit">Abonează-te</button>
+    </form>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap fgrid">
+    <div>
+      <div class="brand" style="margin-bottom:.6rem">NORD STUDIO</div>
+      <p>Showroom: Str. Mendeleev 7, București<br>Luni – Sâmbătă, 10:00 – 20:00<br>0755 100 200 · salut@nordstudio.ro</p>
+    </div>
+    <div><h4>Magazin</h4><a href="#">Colecția nouă</a><a href="#">Femei</a><a href="#">Bărbați</a><a href="#">Carduri cadou</a></div>
+    <div><h4>Ajutor</h4><a href="#">Ghid mărimi</a><a href="#">Livrare</a><a href="#">Retur și schimb</a><a href="#">Întrebări frecvente</a></div>
+    <div><h4>Urmărește-ne</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Pinterest</a><a href="#">Newsletter</a></div>
+  </div>
+  <div class="wrap fbot"><span>© 2026 NORD Studio SRL · CUI 45123789</span><span>nordstudio.ro · Termeni · Confidențialitate · ANPC</span></div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');});
+</script>
+</body>
+</html>

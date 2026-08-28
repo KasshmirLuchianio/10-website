@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Motorline Service Auto București — ITP, Revizii, Diagnoză</title>
+<meta name="description" content="Service auto multimarcă în București. Diagnoză computerizată, revizii, frâne, distribuție, ITP. Programare în aceeași zi, deviz clar înainte de a începe lucrul." />
+<meta name="theme-color" content="#0E1013" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E1013'/%3E%3Ctext x='16' y='23' font-size='18' font-family='Arial' font-weight='bold' fill='%23FF4D2E' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AutoRepair","name":"Motorline Service Auto","image":"https://motorline.ro/og.jpg","telephone":"+40721000111","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"Șos. Berceni 104","addressLocality":"București","postalCode":"041919","addressCountry":"RO"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"14:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"212"}}
+</script>
+<style>
+:root{
+  --bg:#0E1013; --panel:#15181D; --line:rgba(255,255,255,.09);
+  --ink:#F3F4F6; --muted:#9AA1AC; --red:#FF4D2E; --steel:#4E86FF;
+  --pad:clamp(1.2rem,5vw,5rem);
+  --head:"Barlow Condensed",Impact,sans-serif; --body:"Inter",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--head);text-transform:uppercase;line-height:.95;letter-spacing:-.01em;font-weight:700}
+section{padding:clamp(3.5rem,8vw,7rem) var(--pad)}
+.wrap{max-width:1180px;margin:0 auto}
+.eyebrow{font-family:var(--head);font-size:.95rem;letter-spacing:.22em;color:var(--red);text-transform:uppercase;margin-bottom:.9rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:2px;font-weight:600;font-size:.95rem;transition:.25s;border:1px solid transparent}
+.btn--primary{background:var(--red);color:#fff}
+.btn--primary:hover{background:#ff6a50;transform:translateY(-2px)}
+.btn--ghost{border-color:var(--line);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--red);color:var(--red)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem var(--pad);background:rgba(14,16,19,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--head);font-size:1.6rem;letter-spacing:.02em}
+.brand span{color:var(--red)}
+.nav__links{display:flex;gap:1.8rem;font-size:.85rem;font-weight:500;letter-spacing:.04em}
+.nav__links a:hover{color:var(--red)}
+.nav__cta{font-family:var(--head);font-size:1.25rem;color:var(--red);letter-spacing:.03em}
+@media(max-width:860px){.nav__links{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;padding:clamp(3rem,8vw,6rem) var(--pad);
+  background:
+   radial-gradient(70% 90% at 78% 20%,rgba(255,77,46,.16),transparent 62%),
+   linear-gradient(180deg,#12151A,#0E1013);
+  overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:repeating-linear-gradient(115deg,transparent 0 38px,rgba(255,255,255,.028) 38px 40px)}
+.hero__in{position:relative;z-index:2;max-width:820px}
+.hero h1{font-size:clamp(3rem,9vw,6.4rem)}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{color:var(--muted);font-size:clamp(1rem,1.6vw,1.18rem);max-width:52ch;margin:1.4rem 0 2.2rem}
+.hero__actions{display:flex;gap:.9rem;flex-wrap:wrap}
+.badges{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line)}
+.badge b{display:block;font-family:var(--head);font-size:2.4rem;color:#fff;line-height:1}
+.badge span{font-size:.82rem;color:var(--muted);letter-spacing:.06em}
+
+/* servicii */
+.grid3{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.5rem}
+@media(min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--panel);padding:2.2rem 1.8rem;transition:.3s}
+.card:hover{background:#1B1F26}
+.card svg{width:34px;height:34px;stroke:var(--red);fill:none;stroke-width:1.6;margin-bottom:1.1rem}
+.card h3{font-size:1.45rem;margin-bottom:.55rem}
+.card p{color:var(--muted);font-size:.94rem}
+.card .price{display:block;margin-top:1rem;font-family:var(--head);font-size:1.25rem;color:var(--steel)}
+
+/* proces */
+.steps{counter-reset:s;display:grid;gap:1.6rem;margin-top:2.5rem}
+@media(min-width:880px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{position:relative;padding-top:2.6rem;border-top:2px solid var(--red)}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:.7rem;left:0;
+  font-family:var(--head);font-size:1.5rem;color:var(--red)}
+.step h3{font-size:1.2rem;margin-bottom:.4rem}
+.step p{color:var(--muted);font-size:.92rem}
+
+/* preturi */
+.pricing{background:var(--panel)}
+.plist{border-top:1px solid var(--line);margin-top:2rem}
+.prow{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:1.05rem 0;border-bottom:1px solid var(--line)}
+.prow span:first-child{font-weight:500}
+.prow span:last-child{font-family:var(--head);font-size:1.35rem;color:var(--red);white-space:nowrap}
+.note{color:var(--muted);font-size:.86rem;margin-top:1.2rem}
+
+/* recenzii */
+.revs{display:grid;gap:1.4rem;margin-top:2.5rem}
+@media(min-width:820px){.revs{grid-template-columns:repeat(3,1fr)}}
+.rev{background:var(--panel);border:1px solid var(--line);padding:1.8rem}
+.stars{color:#FFC53D;letter-spacing:.15em;font-size:.9rem;margin-bottom:.8rem}
+.rev p{font-size:.95rem;color:#D7DBE1}
+.rev b{display:block;margin-top:1rem;font-size:.85rem;color:var(--muted);font-weight:500}
+
+/* contact */
+.contact{display:grid;gap:2.5rem}
+@media(min-width:900px){.contact{grid-template-columns:1fr 1fr;align-items:start}}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.field input,.field textarea,.field select{width:100%;background:#0B0D10;border:1px solid var(--line);color:var(--ink);
+  padding:.85rem 1rem;border-radius:2px;font-family:inherit;font-size:.95rem}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--red)}
+.info li{list-style:none;padding:1.1rem 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;font-size:.95rem}
+.info li b{font-weight:600}
+.info li span{color:var(--muted);text-align:right}
+.map{margin-top:1.6rem;height:220px;border:1px solid var(--line);
+  background:linear-gradient(135deg,#171B21,#101318);display:grid;place-items:center;color:var(--muted);font-size:.85rem}
+
+/* footer */
+footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+/* fab */
+.fab{position:fixed;right:1.1rem;bottom:1.1rem;z-index:60;display:flex;align-items:center;gap:.5rem;
+  background:var(--red);color:#fff;padding:.9rem 1.3rem;border-radius:50px;font-weight:600;font-size:.92rem;
+  box-shadow:0 10px 30px rgba(255,77,46,.35)}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="brand">MOTOR<span>LINE</span></a>
+  <div class="nav__links">
+    <a href="#servicii">Servicii</a><a href="#proces">Cum lucrăm</a><a href="#preturi">Prețuri</a><a href="#recenzii">Recenzii</a><a href="#contact">Contact</a>
+  </div>
+  <a href="tel:+40721000111" class="nav__cta">0721 000 111</a>
+</nav>
+
+<header class="hero">
+  <div class="hero__in">
+    <p class="eyebrow">Service auto multimarcă · Berceni, București</p>
+    <h1>Mașina ta,<br>reparată <em>cum trebuie</em><br>din prima.</h1>
+    <p>Diagnoză computerizată, deviz clar înainte să atingem ceva și piese cu garanție 2 ani. Programări în aceeași zi — nu te ținem o săptămână în curte.</p>
+    <div class="hero__actions">
+      <a href="#contact" class="btn btn--primary">Programează-te online</a>
+      <a href="tel:+40721000111" class="btn btn--ghost">Sună acum · 0721 000 111</a>
+    </div>
+    <div class="badges">
+      <div class="badge"><b>18</b><span>ANI DE EXPERIENȚĂ</span></div>
+      <div class="badge"><b>4.9★</b><span>212 RECENZII GOOGLE</span></div>
+      <div class="badge"><b>24h</b><span>TIMP MEDIU DE LUCRU</span></div>
+      <div class="badge"><b>2 ani</b><span>GARANȚIE PIESE</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="servicii">
+  <div class="wrap">
+    <p class="eyebrow">Ce facem</p>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Servicii complete, sub același acoperiș</h2>
+    <div class="grid3">
+      <div class="card reveal">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Diagnoză computerizată</h3>
+        <p>Citim toate modulele, nu doar motorul. Îți explicăm erorile în română, nu în coduri.</p>
+        <span class="price">de la 120 lei</span>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>
+        <h3>Revizie completă</h3>
+        <p>Ulei, toate filtrele, verificare 32 de puncte și raport foto pe WhatsApp.</p>
+        <span class="price">de la 390 lei</span>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Frâne și suspensii</h3>
+        <p>Plăcuțe, discuri, amortizoare, bucșe. Testare pe standul de frânare inclusă.</p>
+        <span class="price">de la 250 lei</span>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <h3>Distribuție și motor</h3>
+        <p>Kit distribuție, pompă apă, garnitură chiuloasă. Lucrăm pe benzină și diesel.</p>
+        <span class="price">de la 1.100 lei</span>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4"/></svg>
+        <h3>Climatizare</h3>
+        <p>Încărcare freon, detectare pierderi cu azot, igienizare cu ozon.</p>
+        <span class="price">de la 180 lei</span>
+      </div>
+      <div class="card reveal">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5"/></svg>
+        <h3>Pregătire și programare ITP</h3>
+        <p>Verificăm tot ce pică la ITP înainte să mergi. Programarea o facem noi.</p>
+        <span class="price">gratuit la revizie</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proces" style="background:#111419">
+  <div class="wrap">
+    <p class="eyebrow">Cum lucrăm</p>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Fără surprize pe factură</h2>
+    <div class="steps">
+      <div class="step reveal"><h3>Programare</h3><p>Ne scrii pe WhatsApp sau completezi formularul. Îți dăm oră fixă, nu „vino și așteaptă”.</p></div>
+      <div class="step reveal"><h3>Diagnoză</h3><p>Punem mașina pe tester și pe elevator. Primești lista de probleme, cu poze.</p></div>
+      <div class="step reveal"><h3>Deviz aprobat</h3><p>Nimic nu se demontează până nu spui „da” pe prețul final. Scris, nu din vorbe.</p></div>
+      <div class="step reveal"><h3>Predare</h3><p>Mașina spălată, factură, garanție 2 ani pe piese și 1 an pe manoperă.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="preturi" class="pricing">
+  <div class="wrap">
+    <p class="eyebrow">Prețuri orientative</p>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">Le vezi înainte să suni</h2>
+    <div class="plist">
+      <div class="prow"><span>Schimb ulei + filtru ulei (manoperă)</span><span>90 lei</span></div>
+      <div class="prow"><span>Revizie completă turism — manoperă</span><span>240 lei</span></div>
+      <div class="prow"><span>Schimb plăcuțe față (manoperă)</span><span>150 lei</span></div>
+      <div class="prow"><span>Diagnoză computerizată completă</span><span>120 lei</span></div>
+      <div class="prow"><span>Geometrie roți 3D</span><span>190 lei</span></div>
+      <div class="prow"><span>Încărcare climă R134a</span><span>180 lei</span></div>
+      <div class="prow"><span>Kit distribuție + pompă apă (manoperă)</span><span>de la 650 lei</span></div>
+    </div>
+    <p class="note">Prețurile sunt pentru manoperă și includ TVA. Piesele se facturează separat, la preț de listă — îți arătăm factura furnizorului dacă o ceri.</p>
+  </div>
+</section>
+
+<section id="recenzii">
+  <div class="wrap">
+    <p class="eyebrow">Ce spun clienții</p>
+    <h2 style="font-size:clamp(2rem,5vw,3.2rem)">4.9 din 5 pe Google</h2>
+    <div class="revs">
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>Singurul service care mi-a arătat piesa veche și mi-a explicat de ce trebuie schimbată. Deviz respectat la leu.</p><b>Andrei M. · Golf 7</b></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>Am dus mașina dimineața la 8, la 17 era gata, spălată. Raport cu poze pe WhatsApp cât eram la birou.</p><b>Cristina D. · Dacia Duster</b></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>Alt service îmi cerea 4.000 lei pe injectoare. Aici s-a rezolvat cu 700 lei, era o problemă de senzor.</p><b>Robert P. · BMW 320d</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#111419">
+  <div class="wrap contact">
+    <div>
+      <p class="eyebrow">Programare</p>
+      <h2 style="font-size:clamp(2rem,5vw,3rem);margin-bottom:1.2rem">Spune-ne ce mașină ai</h2>
+      <form onsubmit="event.preventDefault();this.reset();alert('Îți mulțumim! Te sunăm în maximum 30 de minute.')">
+        <div class="field"><label for="n">Nume</label><input id="n" required placeholder="Numele tău" /></div>
+        <div class="field"><label for="t">Telefon</label><input id="t" type="tel" required placeholder="07xx xxx xxx" /></div>
+        <div class="field"><label for="m">Mașina</label><input id="m" required placeholder="Ex: Skoda Octavia 1.6 TDI, 2016" /></div>
+        <div class="field"><label for="s">De ce ai nevoie</label>
+          <select id="s"><option>Revizie</option><option>Diagnoză</option><option>Frâne / suspensii</option><option>Distribuție</option><option>Climatizare</option><option>Altceva</option></select>
+        </div>
+        <div class="field"><label for="d">Detalii</label><textarea id="d" rows="3" placeholder="Ce zgomot face, de când, ce becuri sunt aprinse..."></textarea></div>
+        <button class="btn btn--primary" type="submit">Trimite cererea</button>
+      </form>
+    </div>
+    <div>
+      <ul class="info">
+        <li><b>Adresă</b><span>Șos. Berceni 104, Sector 4, București</span></li>
+        <li><b>Telefon</b><span>0721 000 111</span></li>
+        <li><b>WhatsApp</b><span>0721 000 111</span></li>
+        <li><b>Email</b><span>programari@motorline.ro</span></li>
+        <li><b>Luni – Vineri</b><span>08:00 – 19:00</span></li>
+        <li><b>Sâmbătă</b><span>09:00 – 14:00</span></li>
+        <li><b>Duminică</b><span>Închis</span></li>
+      </ul>
+      <div class="map">Hartă Google Maps — se activează la publicare</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Motorline Service Auto SRL · CUI 12345678</span>
+  <span>motorline.ro · Termeni · Confidențialitate</span>
+</footer>
+
+<a class="fab" href="https://wa.me/40721000111">WhatsApp</a>
+
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
