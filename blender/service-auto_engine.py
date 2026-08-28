@@ -51,6 +51,12 @@ ENGINE     = arg("--engine", "eevee").lower()
 # HDRI: daca pui un .hdr / .exr in blender/hdri/ si dai calea aici, metalul
 # incepe sa reflecte un spatiu real. Fara el, folosim un studio construit din lumini.
 HDRI       = arg("--hdri", "")
+# suprascriu rezolutia si sample-urile din linia de comanda, ca sa pot itera
+# repede pe look si abia la final sa dau randarea mare
+if "--res" in ARGS:
+    RES_X = int(arg("--res", RES_X)); RES_Y = int(RES_X * 0.625)
+SAMPLES    = int(arg("--samples", 128))
+STILL_MULT = int(arg("--still-mult", 2))
 
 # Fereastra in care sosesc piesele (restul e asezare + rotatie lenta).
 ARRIVE_FIRST = 4
@@ -130,6 +136,26 @@ def add(kind, name, loc, rot=(0, 0, 0), size=(1, 1, 1),
     PARTS.append((ob, order))
     return ob
 
+def prism(name, loc, bottom, top, height, mat="iron", order=0):
+    """Cutie cu fata de jos mai mica decat cea de sus. Baia de ulei si carterul
+    unui motor real sunt trapezoidale, nu cutii — asta schimba silueta cel mai mult."""
+    bx, by = bottom; tx, ty = top; h = height/2
+    verts = [(-bx/2,-by/2,-h),(bx/2,-by/2,-h),(bx/2,by/2,-h),(-bx/2,by/2,-h),
+             (-tx/2,-ty/2, h),(tx/2,-ty/2, h),(tx/2,ty/2, h),(-tx/2,ty/2, h)]
+    faces = [(0,3,2,1),(4,5,6,7),(0,1,5,4),(2,3,7,6),(1,2,6,5),(0,4,7,3)]
+    me = bpy.data.meshes.new(name)
+    me.from_pydata(verts, [], faces)
+    me.update()
+    ob = bpy.data.objects.new(name, me)
+    ob.location = loc
+    bpy.context.collection.objects.link(ob)
+    ob.data.materials.append(MAT[mat])
+    bev = ob.modifiers.new("Bevel", "BEVEL")
+    bev.width = 0.018; bev.segments = 3
+    bev.limit_method = "ANGLE"; bev.angle_limit = math.radians(38)
+    PARTS.append((ob, order))
+    return ob
+
 R90 = math.radians(90)
 CYL_X = [-0.75, -0.25, 0.25, 0.75]     # axele celor patru cilindri
 
@@ -153,15 +179,38 @@ for i, x in enumerate(CYL_X):
             radius=0.222, depth=0.022, mat="steel", order=1)
 
 # --- 2. blocul motor -------------------------------------------------------
-add("cube", "BlocMotor", (0, 0, 0.05), size=(2.30, 1.40, 1.15),
+# Un motor real nu e o cutie: carterul e ingust jos si se largeste, banca de
+# cilindri e un bloc mai lat deasupra, iar puntea de sus are o flansa. Plus
+# nervuri de rigidizare pe lateral, care sunt semnul vizual dupa care ochiul
+# recunoaste fonta turnata.
+prism("Carter", (0, 0, -0.42), bottom=(1.72, 0.92), top=(2.24, 1.34),
+      height=0.68, mat="iron", order=2)
+add("cube", "BancaCilindri", (0, 0, 0.24), size=(2.26, 1.36, 0.66),
+    mat="iron", order=2)
+add("cube", "PunteSus", (0, 0, 0.60), size=(2.34, 1.44, 0.10),
     mat="iron", order=2)
 for i, x in enumerate(CYL_X):
-    add("cyl", f"Camasa.{i}", (x, 0, 0.22), radius=0.245, depth=0.92,
+    add("cyl", f"Camasa.{i}", (x, 0, 0.30), radius=0.245, depth=0.62,
         mat="steel", order=2)
+    # nervuri pe ambele laturi, intre cilindri
+    for s_ in (-1, 1):
+        add("cube", f"Nervura.{i}.{s_}", (x, s_ * 0.70, 0.16),
+            size=(0.10, 0.06, 0.52), mat="iron", order=2)
+# bosaj pentru filtrul de ulei si pompa de apa — rup monotonia peretelui
+add("cyl", "SuportFiltru", (0.95, -0.74, -0.30), rot=(R90, 0, 0),
+    radius=0.20, depth=0.16, mat="iron", order=2)
+add("cyl", "FiltruUlei", (0.95, -0.94, -0.30), rot=(R90, 0, 0),
+    radius=0.17, depth=0.26, mat="accent", order=2)
 
 # --- 3. chiulasa -----------------------------------------------------------
-add("cube", "Chiulasa", (0, 0, 0.83), size=(2.30, 1.40, 0.42),
+add("cube", "Chiulasa", (0, 0, 0.80), size=(2.30, 1.40, 0.34),
     mat="alu", order=3)
+add("cube", "FlansaChiulasa", (0, 0, 0.66), size=(2.40, 1.50, 0.07),
+    mat="alu", order=3)
+# camerele de ardere ies putin in relief pe partea de admisie
+for i, x in enumerate(CYL_X):
+    add("cyl", f"BosajBujie.{i}", (x, 0, 0.99), radius=0.11, depth=0.14,
+        mat="alu", order=3)
 for i, x in enumerate(CYL_X):
     for s in (-1, 1):
         add("cyl", f"Supapa.{i}.{s}", (x, s * 0.22, 0.78), radius=0.055,
@@ -180,44 +229,44 @@ add("cyl", "BusonUlei", (0.80, 0.36, 1.26), radius=0.13, depth=0.10,
     mat="alu", order=4)
 
 # --- 5. baie de ulei -------------------------------------------------------
-add("cube", "BaieUlei", (0, 0, -1.02), size=(2.05, 1.22, 0.42),
-    mat="iron", order=5)
+prism("BaieUlei", (0, 0, -1.00), bottom=(1.46, 0.78), top=(1.98, 1.16),
+      height=0.46, mat="iron", order=5)
 add("cyl", "BusonGolire", (0.70, 0, -1.24), radius=0.075, depth=0.09,
     mat="steel", order=5)
 
 # --- 6. galerie de admisie -------------------------------------------------
-add("cube", "Plenum", (0, 1.12, 0.86), size=(1.95, 0.46, 0.44),
-    mat="alu", order=6)
+add("cube", "Plenum", (0, 1.16, 0.90), size=(1.95, 0.46, 0.44),
+    mat="alu", order=5)
 for i, x in enumerate(CYL_X):
     add("cyl", f"Runner.{i}", (x, 0.86, 0.86), rot=(R90, 0, 0),
-        radius=0.105, depth=0.62, mat="alu", order=6)
+        radius=0.105, depth=0.66, mat="alu", order=5)
 add("cyl", "ClapetaAdmisie", (-1.10, 1.12, 0.86), rot=(0, R90, 0),
-    radius=0.19, depth=0.22, mat="alu", order=6)
+    radius=0.19, depth=0.22, mat="alu", order=5)
 
 # --- 7. galerie de evacuare ------------------------------------------------
 for i, x in enumerate(CYL_X):
     add("torus", f"Primar.{i}", (x, -0.92, 0.72), rot=(0, 0, 0),
-        radius=0.26, depth=0.062, mat="exhaust", order=7)
+        radius=0.26, depth=0.062, mat="exhaust", order=6)
 add("cyl", "Colector", (0, -1.22, 0.34), rot=(0, R90, 0),
-    radius=0.13, depth=1.90, mat="exhaust", order=7)
+    radius=0.13, depth=1.90, mat="exhaust", order=6)
 
 # --- 8. turbo --------------------------------------------------------------
 add("cyl", "CarcasaTurbina", (-1.18, -1.36, 0.10), rot=(R90, 0, 0),
-    radius=0.36, depth=0.30, mat="exhaust", order=8)
+    radius=0.36, depth=0.30, mat="exhaust", order=7)
 add("cyl", "CarcasaCompresor", (-1.18, -1.36, -0.42), rot=(R90, 0, 0),
-    radius=0.30, depth=0.26, mat="alu", order=8)
+    radius=0.30, depth=0.26, mat="alu", order=7)
 add("cyl", "AxTurbo", (-1.18, -1.36, -0.16), radius=0.055, depth=0.60,
-    mat="steel", order=8)
+    mat="steel", order=7)
 
 # --- 9. distributie fata ---------------------------------------------------
 add("cyl", "FulieVibrochen", (-1.32, 0, -0.70), rot=(0, R90, 0),
-    radius=0.30, depth=0.13, mat="steel", order=9)
+    radius=0.30, depth=0.13, mat="steel", order=8)
 add("cyl", "FulieAlternator", (-1.32, 0.52, 0.30), rot=(0, R90, 0),
-    radius=0.18, depth=0.11, mat="steel", order=9)
+    radius=0.18, depth=0.11, mat="steel", order=8)
 add("cyl", "FuliePompaApa", (-1.32, -0.48, 0.34), rot=(0, R90, 0),
-    radius=0.16, depth=0.11, mat="steel", order=9)
+    radius=0.16, depth=0.11, mat="steel", order=8)
 add("torus", "CureaAccesorii", (-1.36, 0.02, -0.16), rot=(0, R90, 0),
-    radius=0.56, depth=0.035, mat="rubber", order=9)
+    radius=0.56, depth=0.035, mat="rubber", order=8)
 
 # --- 10. suruburi (ultimele, in rafala) ------------------------------------
 bolt_spots = []
@@ -383,8 +432,19 @@ engines = [e.identifier for e in
 
 if ENGINE.startswith("cyc"):
     scene.render.engine = "CYCLES"
-    scene.cycles.samples = 128
-    scene.cycles.use_denoising = True
+    scene.cycles.samples = SAMPLES
+    # Nu toate build-urile de Blender vin cu OpenImageDenoise (cele din
+    # depozitele Linux, de exemplu). Verificam inainte, altfel randarea crapa.
+    denoisers = [d.identifier for d in
+                 scene.cycles.bl_rna.properties["denoiser"].enum_items]
+    have = [d for d in ("OPENIMAGEDENOISE", "OPTIX") if d in denoisers]
+    if have and "--no-denoise" not in ARGS:
+        scene.cycles.use_denoising = True
+        scene.cycles.denoiser = have[0]
+    else:
+        scene.cycles.use_denoising = False
+        print("[motorline] fara denoiser in acest build — cresc sample-urile")
+        scene.cycles.samples = max(SAMPLES, 192)
     # Denoising e pornit pentru ca aici randam cadre individuale, nu secventa
     # care se scrubuieste direct. Secventa trece oricum prin AI dupa asta.
     if hasattr(scene.cycles, "use_adaptive_sampling"):
@@ -477,10 +537,23 @@ nt.links.new(rl.outputs["Normal"], fo_norm.inputs[0])
 # ------------------------------------------------------- cadrul-ancora
 # Un singur cadru, la rezolutie dubla, pe care il duci in generatorul de imagini
 # si il aduci la look-ul final. Devine referinta de stil pentru pasul video.
+def build_studio():
+    """Podea si fundal doar pentru cadrul-ancora. Umbra de contact e ce face
+    diferenta dintre 'obiect randat' si 'obiect fotografiat pe o masa'."""
+    bpy.ops.mesh.primitive_plane_add(size=40, location=(0, 0, -1.34))
+    floor = bpy.context.active_object
+    floor.name = "PodeaStudio"
+    m = metal("Podea", (0.020, 0.021, 0.024), 0.10, 0.36)
+    floor.data.materials.append(m)
+    scene.render.film_transparent = False
+    wn["Background"].inputs[1].default_value = 0.55
+    return floor
+
 def render_still():
     scene.frame_set(min(max(STILL, 1), TOTAL))
-    scene.render.resolution_x = RES_X * 2
-    scene.render.resolution_y = RES_Y * 2
+    floor = build_studio() if "--studio" in ARGS else None
+    scene.render.resolution_x = RES_X * STILL_MULT
+    scene.render.resolution_y = RES_Y * STILL_MULT
     scene.render.filepath = OUT_DIR + f"ancora_frame{STILL:04d}.png"
     fo_depth.mute = True
     fo_norm.mute = True
@@ -490,12 +563,21 @@ def render_still():
     scene.render.resolution_x = RES_X
     scene.render.resolution_y = RES_Y
     scene.render.filepath = OUT_DIR + "beauty/"
-    print(f"[motorline] cadru-ancora scris: {scene.render.filepath}")
+    if floor:
+        bpy.data.objects.remove(floor, do_unlink=True)
+        scene.render.film_transparent = True
+    print("[motorline] cadru-ancora scris")
 
 if "--still-only" in ARGS:
     render_still()
-elif "--with-still" in ARGS:
-    render_still()
+else:
+    # Pentru secventa, studioul se construieste o singura data si ramane:
+    # un driving video cu podea si umbra de contact da modelului de video
+    # mult mai mult context decat un obiect care pluteste in transparent.
+    if "--studio" in ARGS:
+        build_studio()
+    if "--with-still" in ARGS:
+        render_still()
 
 print(f"[motorline] {len(PARTS)} piese, {TOTAL} cadre, motor: {scene.render.engine}")
 print(f"[motorline] iese in: {OUT_DIR}")
