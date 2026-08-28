@@ -223,27 +223,35 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
     <!-- beat 1 -->
     <div class="sh__layer sh__layer--beat" id="shBeat1">
       <div class="sh__beat">
-        <span class="sh__num">01 — Diagnoza</span>
-        <h2>Un motor are peste <em>200 de piese</em>.<br>Una singură e problema ta.</h2>
-        <p>Citim toate modulele, nu doar cel de motor, și îți arătăm exact care e.</p>
+        <span class="sh__num">01 — Alimentare și motor</span>
+        <h2>De la buşon<br>până în <em>camera de ardere</em>.</h2>
+        <p>Injecție, pompă, filtre, distribuție. Citim toate modulele, nu doar cel de motor.</p>
       </div>
     </div>
 
     <!-- beat 2 -->
     <div class="sh__layer sh__layer--beat" id="shBeat2">
       <div class="sh__beat">
-        <span class="sh__num">02 — Devizul</span>
-        <h2>O găsim <em>înainte</em><br>să plătești ceva.</h2>
-        <p>Nimic nu se demontează până nu spui „da" pe prețul final. Scris, nu din vorbe.</p>
+        <span class="sh__num">02 — Răcire, ulei, climatizare</span>
+        <h2>Circuitele care<br>țin motorul <em>în viață</em>.</h2>
+        <p>Radiator, pompă de apă, termostat, compresor de climă. Verificăm presiunea, nu ghicim.</p>
       </div>
     </div>
 
     <!-- final: motorul intreg -->
     <div class="sh__layer sh__layer--end" id="shEnd">
       <div class="sh__beat">
-        <span class="sh__num">03 — Predarea</span>
-        <h2>La loc, ca din fabrică.</h2>
-        <p style="margin-bottom:2rem">Garanție 2 ani pe piese, 1 an pe manoperă. Și mașina spălată.</p>
+        <span class="sh__num">03 — Frânare și suspensii</span>
+        <h2>Patru etriere.<br>O singură <em>pedală</em>.</h2>
+        <p style="margin-bottom:2rem">Plăcuțe, discuri, lichid de frână, amortizoare, bucșe. Testate pe standul de frânare.</p>
+      </div>
+    </div>
+
+    <div class="sh__layer sh__layer--end" id="shAll">
+      <div class="sh__beat">
+        <span class="sh__num">Motorline</span>
+        <h2>Tot ce are mașina ta,<br>sub <em>același acoperiș</em>.</h2>
+        <p style="margin-bottom:2rem">Un singur service, un singur deviz, o singură garanție. Nu te mai plimbăm de la unul la altul.</p>
         <div class="hero__actions" style="justify-content:center">
           <a href="#contact" class="btn btn--primary">Programează-te online</a>
           <a href="tel:+40721000111" class="btn btn--ghost">0721 000 111</a>
@@ -403,7 +411,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
    ============================================================ */
 (function () {
   var CFG = {
-    path: "hero/frames/motor_",   // motor_0001.webp ... motor_0090.webp
+    path: "hero/frames/scan_",    // scan_0001.webp ... scan_0090.webp
     ext: ".webp",
     count: 90,
     pad: 4
@@ -427,9 +435,10 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   /* --- straturile de text si ferestrele lor pe progres --- */
   var LAYERS = [
     { el: document.getElementById("shOpen"),  in: 0.00, out: 0.16 },
-    { el: document.getElementById("shBeat1"), in: 0.26, out: 0.45 },
-    { el: document.getElementById("shBeat2"), in: 0.54, out: 0.72 },
-    { el: document.getElementById("shEnd"),   in: 0.84, out: 1.01 }
+    { el: document.getElementById("shBeat1"), in: 0.20, out: 0.40 },
+    { el: document.getElementById("shBeat2"), in: 0.42, out: 0.60 },
+    { el: document.getElementById("shEnd"),   in: 0.64, out: 0.82 },
+    { el: document.getElementById("shAll"),   in: 0.88, out: 1.01 }
   ];
   var FADE = 0.05;
 

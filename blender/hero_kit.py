@@ -298,6 +298,91 @@ def camera(start, end, target=(0, 0, 0), lens=52, fstop=3.2, track_object=None):
     ease(cam, "EASE_IN_OUT", "SINE")
     return cam, look
 
+
+# ------------------------------------------------------------- look de X-ray
+def xray_mat(name, rgb=(0.32, 0.62, 0.95), alpha=0.055, rim=0.9):
+    """Invelis aproape invizibil, care se aprinde pe muchii. Nu e sticla: sticla
+    refracta si ascunde ce e inauntru, exact invers decat vrem la un X-ray."""
+    m = bpy.data.materials.new(name)
+    m.use_nodes = True
+    nt = m.node_tree
+    b = nt.nodes["Principled BSDF"]
+    _set(b, ["Base Color"], (*rgb, 1.0))
+    _set(b, ["Roughness"], 0.25)
+    _set(b, ["Metallic"], 0.0)
+    _set(b, ["Alpha"], alpha)
+    _set(b, ["Emission Color", "Emission"], (*rgb, 1.0))
+    _set(b, ["Emission Strength"], rim)
+    m.blend_method = "BLEND"
+    m.show_transparent_back = False
+    return m
+
+def wire_over(name, build_fn, material, thickness=0.012):
+    """Deseneaza acelasi volum inca o data, doar ca muchii luminoase.
+    Asta e ce transforma o forma transparenta in 'scanare', nu in geam murdar."""
+    ob = build_fn(name)
+    ob.data.materials.clear()
+    ob.data.materials.append(material)
+    w = ob.modifiers.new("Wireframe", "WIREFRAME")
+    w.thickness = thickness
+    w.use_replace = True
+    w.use_even_offset = False
+    for m in list(ob.modifiers):
+        if m.type == "BEVEL":
+            ob.modifiers.remove(m)
+    return ob
+
+def show_between(ob, f_in, f_out, fade=3):
+    """Obiectul exista doar intre doua cadre. Folosit ca sa se aprinda pe rand
+    fiecare circuit, in loc sa fie toate aprinse tot timpul."""
+    for f, vis in ((1, True), (max(1, f_in - fade), True),
+                   (f_in, False), (f_out, False),
+                   (min(TOTAL, f_out + fade), True)):
+        ob.hide_render = vis
+        ob.hide_viewport = vis
+        ob.keyframe_insert("hide_render", frame=f)
+        ob.keyframe_insert("hide_viewport", frame=f)
+    if ob.animation_data and ob.animation_data.action:
+        for fc in ob.animation_data.action.fcurves:
+            for kp in fc.keyframe_points:
+                kp.interpolation = "CONSTANT"
+
+def camera_travel(start, end, target_start, target_end, lens=(50, 34),
+                  fstop=3.2, ease_mode="EASE_IN_OUT"):
+    """Camera care se retrage: pleaca de langa un detaliu si ajunge la ansamblu.
+
+    Se misca si tinta, nu doar camera — altfel, cand te departezi, subiectul de
+    la inceput ramane lipit in centru si restul intra strambat in cadru. Si
+    focala se largeste pe drum: tine detaliul mare la inceput fara sa taie
+    ansamblul la final."""
+    bpy.ops.object.empty_add(type="PLAIN_AXES", location=target_start)
+    look = bpy.context.active_object; look.name = "CAM_Target"
+    look.keyframe_insert("location", frame=1)
+    look.location = target_end
+    look.keyframe_insert("location", frame=TOTAL)
+    ease(look, ease_mode, "SINE")
+
+    cd = bpy.data.cameras.new("Camera")
+    cd.lens = lens[0]
+    cd.dof.use_dof = True
+    cd.dof.focus_object = look
+    cd.dof.aperture_fstop = fstop
+    cam = bpy.data.objects.new("Camera", cd)
+    bpy.context.collection.objects.link(cam)
+    bpy.context.scene.camera = cam
+    t = cam.constraints.new("TRACK_TO")
+    t.target = look; t.track_axis = "TRACK_NEGATIVE_Z"; t.up_axis = "UP_Y"
+    cam.location = start; cam.keyframe_insert("location", frame=1)
+    cam.location = end;   cam.keyframe_insert("location", frame=TOTAL)
+    ease(cam, ease_mode, "SINE")
+    cd.lens = lens[0]; cd.keyframe_insert("lens", frame=1)
+    cd.lens = lens[1]; cd.keyframe_insert("lens", frame=TOTAL)
+    if cd.animation_data and cd.animation_data.action:
+        for fc in cd.animation_data.action.fcurves:
+            for kp in fc.keyframe_points:
+                kp.interpolation = "SINE"; kp.easing = ease_mode
+    return cam, look
+
 def camera_along(points, target_object, lens=40, fstop=2.8, offset=(0, 0, 0)):
     """Camera merge paralel cu un traseu si tine ochii pe un obiect."""
     cd = bpy.data.cameras.new("Camera")
