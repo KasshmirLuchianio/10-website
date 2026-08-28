@@ -24,7 +24,9 @@ def flag(name):
 
 TOTAL   = int(arg("--frames", 90))
 RES_X   = int(arg("--res", 1600))
-RES_Y   = int(RES_X * 0.625)
+# Rotunjit la par: h264 refuza sa encodeze o inaltime impara, iar 760x475
+# opreste tot lantul abia la ffmpeg, dupa 40 de minute de randare.
+RES_Y   = int(RES_X * 0.625) // 2 * 2
 SAMPLES = int(arg("--samples", 64))
 STILL   = int(arg("--still", 62))
 OUT_DIR = arg("--out", "//render/")
