@@ -29,7 +29,8 @@ WIRE    = K.mat("Muchii", (0.35, 0.65, 1.0), 0.0, 0.4,
 FONTA   = K.mat("Fonta",   (0.115, 0.120, 0.135), 0.85, 0.45)
 OTEL    = K.mat("Otel",    (0.34, 0.36, 0.40), 1.00, 0.26)
 CAUCIUC = K.mat("Cauciuc", (0.012, 0.012, 0.014), 0.0, 0.85)
-DISC    = K.mat("Disc",    (0.30, 0.31, 0.34), 1.00, 0.22)
+DISC    = K.mat("Disc",    (0.52, 0.54, 0.58), 1.00, 0.18,
+                emit=(0.10, 0.11, 0.13), emit_power=1.0)
 
 # Fiecare circuit are culoarea lui, ca sa se citeasca instant ca sisteme
 # diferite, nu ca acelasi lucru de trei ori.
@@ -63,7 +64,7 @@ for nume, loc, jos, sus, h in CAROSERIE:
 # ------------------------------------------------------------------- roti
 # Rotile stau sub caroserie, nu langa ea: axul la z=-0.20, raza 0.72,
 # deci solul cade la -0.92.
-ROTI = [(-2.55, -1.38), (-2.55, 1.38), (2.55, -1.38), (2.55, 1.38)]
+ROTI = [(-2.55, -1.46), (-2.55, 1.46), (2.55, -1.46), (2.55, 1.46)]
 Z_AX = -0.20
 for i, (x, y) in enumerate(ROTI):
     K.torus(f"Anvelopa.{i}", (x, y, Z_AX), 0.56, 0.19, CAUCIUC, 0,
@@ -71,7 +72,7 @@ for i, (x, y) in enumerate(ROTI):
     K.cylinder(f"Janta.{i}", (x, y, Z_AX), 0.40, 0.22, OTEL, 0,
                rot=(0, math.radians(90), 0))
     # discul si etrierul: piesele pe care le vinde cel mai des un service
-    K.cylinder(f"Disc.{i}", (x, y * 0.90, Z_AX), 0.36, 0.05, DISC, 0,
+    K.cylinder(f"Disc.{i}", (x, y * 0.88, Z_AX), 0.40, 0.055, DISC, 0,
                rot=(0, math.radians(90), 0))
     K.cube(f"Etrier.{i}", (x - 0.26, y * 0.90, Z_AX + 0.20),
            (0.20, 0.30, 0.26), OTEL, 0)
