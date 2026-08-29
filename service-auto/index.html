@@ -130,7 +130,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
    Daca secventa lipseste sau utilizatorul cere miscare redusa,
    .sh primeste .is-static si totul devine un hero clasic.
    ============================================================ */
-.sh{position:relative;height:440vh}
+.sh{position:relative;height:620vh}
 .sh__stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;
   display:grid;place-items:center;
   background:
@@ -186,7 +186,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
 .sh.is-static .sh__layer--beat{display:none}
 .sh.is-static .sh__layer--end{display:none}
 
-@media(max-width:760px){.sh{height:340vh}}
+@media(max-width:760px){.sh{height:480vh}}
 @media(prefers-reduced-motion:reduce){.sh{height:auto}}
 
 </style>
@@ -225,7 +225,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
       <div class="sh__beat">
         <span class="sh__num">01 — Alimentare și motor</span>
         <h2>De la buşon<br>până în <em>camera de ardere</em>.</h2>
-        <p>Injecție, pompă, filtre, distribuție. Citim toate modulele, nu doar cel de motor.</p>
+        <p>Injecție, pompă, filtre, distribuție.</p>
       </div>
     </div>
 
@@ -234,7 +234,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
       <div class="sh__beat">
         <span class="sh__num">02 — Răcire, ulei, climatizare</span>
         <h2>Circuitele care<br>țin motorul <em>în viață</em>.</h2>
-        <p>Radiator, pompă de apă, termostat, compresor de climă. Verificăm presiunea, nu ghicim.</p>
+        <p>Radiator, pompă de apă, termostat, compresor de climă.</p>
       </div>
     </div>
 
@@ -243,21 +243,10 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
       <div class="sh__beat">
         <span class="sh__num">03 — Frânare și suspensii</span>
         <h2>Patru etriere.<br>O singură <em>pedală</em>.</h2>
-        <p style="margin-bottom:2rem">Plăcuțe, discuri, lichid de frână, amortizoare, bucșe. Testate pe standul de frânare.</p>
+        <p style="margin-bottom:2rem">Plăcuțe, discuri, amortizoare. Testate pe standul de frânare.</p>
       </div>
     </div>
 
-    <div class="sh__layer sh__layer--end" id="shAll">
-      <div class="sh__beat">
-        <span class="sh__num">Motorline</span>
-        <h2>Tot ce are mașina ta,<br>sub <em>același acoperiș</em>.</h2>
-        <p style="margin-bottom:2rem">Un singur service, un singur deviz, o singură garanție. Nu te mai plimbăm de la unul la altul.</p>
-        <div class="hero__actions" style="justify-content:center">
-          <a href="#contact" class="btn btn--primary">Programează-te online</a>
-          <a href="tel:+40721000111" class="btn btn--ghost">0721 000 111</a>
-        </div>
-      </div>
-    </div>
 
     <div class="sh__rail"><i id="shRail"></i></div>
     <div class="sh__pct" id="shPct">00 / 90</div>
@@ -266,8 +255,12 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
   </div>
 </section>
 
-<section style="padding-top:clamp(2.5rem,5vw,4rem);padding-bottom:clamp(2.5rem,5vw,4rem)">
-  <div class="wrap badges" style="margin-top:0;padding-top:0;border:none">
+<section style="padding-top:clamp(3rem,6vw,5rem);padding-bottom:clamp(2.5rem,5vw,4rem)">
+  <div class="wrap">
+    <h2 style="font-size:clamp(1.9rem,5vw,3.2rem);max-width:18ch">Tot ce are mașina ta,<br>sub <span class="accent">același acoperiș</span>.</h2>
+    <p style="color:var(--muted);max-width:52ch;margin-top:1rem">Un singur service, un singur deviz, o singură garanție. Nu te mai plimbăm de la unul la altul.</p>
+  </div>
+  <div class="wrap badges" style="margin-top:2.5rem;padding-top:2rem">
     <div class="badge"><b>18</b><span>ANI DE EXPERIENȚĂ</span></div>
     <div class="badge"><b>4.9★</b><span>212 RECENZII GOOGLE</span></div>
     <div class="badge"><b>24h</b><span>TIMP MEDIU DE LUCRU</span></div>
@@ -434,13 +427,15 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   /* --- straturile de text si ferestrele lor pe progres --- */
   var LAYERS = [
-    { el: document.getElementById("shOpen"),  in: 0.00, out: 0.16 },
-    { el: document.getElementById("shBeat1"), in: 0.20, out: 0.40 },
-    { el: document.getElementById("shBeat2"), in: 0.42, out: 0.60 },
-    { el: document.getElementById("shEnd"),   in: 0.64, out: 0.82 },
-    { el: document.getElementById("shAll"),   in: 0.88, out: 1.01 }
+    // Fiecare fereastra e larga de 0.20 din derulare — pe 620vh inseamna ~124vh
+    // de scroll per mesaj. Sub atat, la o glisare rapida pe telefon treci prin
+    // toate fara sa apuci sa citesti vreunul.
+    { el: document.getElementById("shOpen"),  in: 0.00, out: 0.11 },
+    { el: document.getElementById("shBeat1"), in: 0.17, out: 0.37 },
+    { el: document.getElementById("shBeat2"), in: 0.43, out: 0.63 },
+    { el: document.getElementById("shEnd"),   in: 0.69, out: 1.01 }
   ];
-  var FADE = 0.05;
+  var FADE = 0.035;
 
   /* --- incarcarea cadrelor --- */
   var frames = new Array(CFG.count);
