@@ -130,7 +130,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
    Daca secventa lipseste sau utilizatorul cere miscare redusa,
    .sh primeste .is-static si totul devine un hero clasic.
    ============================================================ */
-.sh{position:relative;height:620vh}
+.sh{position:relative;height:500vh}
 .sh__stage{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;
   display:grid;place-items:center;
   background:
@@ -186,7 +186,7 @@ footer{padding:2.5rem var(--pad);border-top:1px solid var(--line);color:var(--mu
 .sh.is-static .sh__layer--beat{display:none}
 .sh.is-static .sh__layer--end{display:none}
 
-@media(max-width:760px){.sh{height:480vh}}
+@media(max-width:760px){.sh{height:400vh}}
 @media(prefers-reduced-motion:reduce){.sh{height:auto}}
 
 </style>
@@ -425,15 +425,44 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function goStatic() { sh.classList.add("is-static"); }
   if (reduce) { goStatic(); return; }
 
+  /* --- ritmul: miscare in reprize, nu slow-motion continuu ---
+     Imaginea vrea ritm, textul vrea timp de citit. Legate liniar de acelasi
+     scroll, unul il strica pe celalalt: fie derulezi prea repede si nu apuci
+     sa citesti, fie lungesti sectiunea si masina se misca in reluare.
+     Curba de mai jos rupe legatura — cadrele avanseaza repede intre mesaje si
+     aproape stau pe loc cat un mesaj e pe ecran. Perechile sunt
+     [progres_scroll, progres_cadru]. */
+  var RITM = [
+    [0.00, 0.00],
+    [0.10, 0.10],   // deschiderea curge
+    [0.22, 0.14],   // se opreste cat citesti primul mesaj
+    [0.38, 0.46],   // reprizã: circuitul de benzina
+    [0.52, 0.50],   // pauza pe al doilea mesaj
+    [0.68, 0.80],   // repriza: racirea
+    [0.84, 0.84],   // pauza pe al treilea mesaj
+    [1.00, 1.00]    // repriza finala: franele
+  ];
+
+  function ritm(p) {
+    for (var i = 1; i < RITM.length; i++) {
+      if (p <= RITM[i][0]) {
+        var a = RITM[i - 1], b = RITM[i];
+        var t = (p - a[0]) / (b[0] - a[0] || 1);
+        return a[1] + (b[1] - a[1]) * t;
+      }
+    }
+    return 1;
+  }
+
   /* --- straturile de text si ferestrele lor pe progres --- */
   var LAYERS = [
     // Fiecare fereastra e larga de 0.20 din derulare — pe 620vh inseamna ~124vh
     // de scroll per mesaj. Sub atat, la o glisare rapida pe telefon treci prin
     // toate fara sa apuci sa citesti vreunul.
-    { el: document.getElementById("shOpen"),  in: 0.00, out: 0.11 },
-    { el: document.getElementById("shBeat1"), in: 0.17, out: 0.37 },
-    { el: document.getElementById("shBeat2"), in: 0.43, out: 0.63 },
-    { el: document.getElementById("shEnd"),   in: 0.69, out: 1.01 }
+    { el: document.getElementById("shOpen"),  in: 0.00, out: 0.12 },
+    { el: document.getElementById("shBeat1"), in: 0.17, out: 0.34 },
+    { el: document.getElementById("shBeat2"), in: 0.47, out: 0.64 },
+    { el: document.getElementById("shEnd"),   in: 0.79, out: 1.01 }
   ];
   var FADE = 0.035;
 
@@ -501,7 +530,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   function draw() {
     if (!ctx || !cw) return;
-    var i = Math.round(shown * (CFG.count - 1));
+    var i = Math.round(ritm(shown) * (CFG.count - 1));
     var img = frames[i];
     // daca acel cadru nu e inca incarcat, cautam cel mai apropiat gata
     if (!img) {
@@ -539,7 +568,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     var pct = shown;
     if (railEl) railEl.style.width = (pct * 100).toFixed(2) + "%";
     if (pctEl) pctEl.textContent =
-      String(Math.round(pct * (CFG.count - 1)) + 1).padStart(2, "0") + " / " + CFG.count;
+      String(Math.round(ritm(pct) * (CFG.count - 1)) + 1).padStart(2, "0") + " / " + CFG.count;
     if (hintEl) hintEl.style.opacity = pct > 0.04 ? 0 : "";
 
     for (var k = 0; k < LAYERS.length; k++) {
