@@ -122,6 +122,41 @@ def prism(name, loc, bottom, top, height, material, order=0):
     bpy.context.view_layer.objects.active = ob
     return _finish(ob, material, order)
 
+
+def loft(name, profile, material, order=0, center=(0, 0, 0)):
+    """Corp construit dintr-un profil lateral, extrudat pe latime.
+
+    `profile` e o lista inchisa de (x, z, semi_latime) parcursa in jurul
+    conturului: bara fata, capota, parbriz, plafon, luneta, portbagaj, bara
+    spate, si inapoi pe sub podea. Latimea variaza de la punct la punct, deci
+    plafonul poate fi mai ingust decat umerii.
+
+    De ce asta si nu cutii: o masina nu are muchii drepte. Capota urca,
+    parbrizul e rabatat, plafonul e curbat, hayonul cade. Din paralelipipede
+    nu iese niciodata silueta, oricat ai regla proportiile — iese o stiva de
+    cutii, si exact asta se vedea inainte."""
+    cx, cy, cz = center
+    n = len(profile)
+    verts = []
+    for x, z, hw in profile:
+        verts.append((cx + x, cy - hw, cz + z))   # stanga
+        verts.append((cx + x, cy + hw, cz + z))   # dreapta
+    faces = []
+    for i in range(n):
+        j = (i + 1) % n
+        a, b = 2 * i, 2 * i + 1
+        c, d = 2 * j, 2 * j + 1
+        faces.append((a, c, d, b))                # banda exterioara
+    faces.append(tuple(range(0, 2 * n, 2)))       # capac stanga
+    faces.append(tuple(range(2 * n - 1, 0, -2)))  # capac dreapta
+    me = bpy.data.meshes.new(name)
+    me.from_pydata(verts, [], faces)
+    me.update()
+    ob = bpy.data.objects.new(name, me)
+    bpy.context.collection.objects.link(ob)
+    bpy.context.view_layer.objects.active = ob
+    return _finish(ob, material, order, bevel=0.02)
+
 # ------------------------------------------------- teava taiata pe lungime
 def half_tube(name, p0, p1, r, material, order=0, open_dir=(0, -1, 0),
               open_angle=125, thickness=0.035, segs=40):

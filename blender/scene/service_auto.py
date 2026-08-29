@@ -28,7 +28,7 @@ WIRE    = K.mat("Muchii", (0.35, 0.65, 1.0), 0.0, 0.4,
                 emit=(0.20, 0.48, 0.95), emit_power=5.5)
 FONTA   = K.mat("Fonta",   (0.115, 0.120, 0.135), 0.85, 0.45)
 OTEL    = K.mat("Otel",    (0.34, 0.36, 0.40), 1.00, 0.26)
-CAUCIUC = K.mat("Cauciuc", (0.012, 0.012, 0.014), 0.0, 0.85)
+CAUCIUC = K.mat("Cauciuc", (0.030, 0.031, 0.034), 0.0, 0.80)
 DISC    = K.mat("Disc",    (0.52, 0.54, 0.58), 1.00, 0.18,
                 emit=(0.10, 0.11, 0.13), emit_power=1.0)
 JANTA   = K.mat("Janta",   (0.62, 0.64, 0.68), 1.00, 0.14)
@@ -45,31 +45,39 @@ FRANA   = K.mat("Frana",   (1.00, 0.22, 0.14), 0.0, 0.15,
                 emit=(1.00, 0.16, 0.08), emit_power=10.0)
 
 # ------------------------------------------------------------------ caroseria
-# Trei volume simple: capota, habitaclul, portbagajul. Nu ne trebuie o masina
-# frumoasa, ne trebuie o silueta pe care ochiul o citeste ca masina in 0.2 sec.
-# Proportii de berlina, nu de buggy: lungime 8.4, latime 2.9, inaltime ~2.
-# Prima varianta avea caroseria inalta si ingusta, cu rotile scoase in afara —
-# creierul o citea ca vehicul de jucarie si pierdea tot mesajul.
-# O berlina are un singur volum lung si jos, cu habitaclul ridicat intre capota
-# si portbagaj. Varianta anterioara punea cabina PESTE o cutie inalta, si iesea
-# camioneta. Linia de centura (unde incep geamurile) sta la z=0.95, acoperisul
-# la 1.78, podeaua la -0.30.
-# Proportiile care fac diferenta intre "masina" si "berlina germana":
-# capota lunga, habitaclu tras mult spre spate, plafon jos, umeri lati.
-# Raportul care conteaza e capota fata de habitaclu — la o berlina premium
-# capota ocupa aproape o treime din lungime.
-CAROSERIE = [
-    ("Corp",       ( 0.00, 0,  0.38), (9.00, 2.86), (8.60, 3.04), 1.16),
-    ("Umeri",      ( 0.20, 0,  0.94), (8.30, 3.04), (7.40, 2.80), 0.30),
-    ("Habitaclu",  ( 0.95, 0,  1.42), (3.90, 2.72), (2.30, 1.78), 0.66),
-    ("BotFata",    (-4.05, 0,  0.42), (1.20, 2.60), (1.05, 2.78), 0.92),
-    ("Difuzor",    ( 4.15, 0, -0.02), (0.90, 2.40), (0.80, 2.60), 0.44),
+# Profilul lateral al unei berline: bara fata joasa, capota lunga si urcatoare,
+# parbriz rabatat, plafon scurt tras spre spate, luneta cazuta, portbagaj scurt.
+# Semi-latimea se ingusteaza la plafon si la bare — asta da umerii lati si
+# greenhouse-ul stramt, adica exact ce citeste ochiul ca "berlina germana".
+#            x       z     semi-latime
+PROFIL = [
+    (-4.70, -0.26, 1.26),   # sub bara fata
+    (-4.82,  0.14, 1.34),   # fata barei
+    (-4.66,  0.50, 1.36),   # buza grilei
+    (-4.20,  0.68, 1.44),   # muchia capotei
+    (-3.10,  0.80, 1.50),   # capota
+    (-1.85,  0.90, 1.53),   # capota spre parbriz
+    (-1.15,  0.98, 1.52),   # baza parbrizului
+    (-0.05,  1.58, 1.26),   # varful parbrizului
+    ( 0.75,  1.66, 1.18),   # plafon fata
+    ( 1.75,  1.62, 1.19),   # plafon spate
+    ( 2.45,  1.36, 1.26),   # inceput luneta
+    ( 2.95,  1.06, 1.40),   # capac portbagaj
+    ( 3.95,  0.96, 1.44),   # buza portbagajului
+    ( 4.48,  0.66, 1.40),   # coada
+    ( 4.56,  0.16, 1.32),   # bara spate
+    ( 4.30, -0.26, 1.24),   # sub bara spate
+    ( 2.20, -0.32, 1.30),   # podea spate
+    ( 0.00, -0.34, 1.32),   # podea mijloc
+    (-2.20, -0.32, 1.30),   # podea fata
 ]
-for nume, loc, jos, sus, h in CAROSERIE:
-    K.prism(nume, loc, jos, sus, h, SHELL, 0)
-    K.wire_over(nume + ".Wire",
-                lambda n, l=loc, j=jos, s_=sus, hh=h: K.prism(n, l, j, s_, hh, SHELL, 0),
-                WIRE, thickness=0.016)
+K.loft("Caroserie", PROFIL, SHELL, 0)
+K.wire_over("Caroserie.Wire",
+            lambda n: K.loft(n, PROFIL, SHELL, 0), WIRE, thickness=0.018)
+
+# praguri si arcuri de roata, ca sa nu pluteasca rotile in aer
+for s_ in (-1, 1):
+    K.cube(f"Prag.{s_}", (0.0, s_ * 1.44, -0.16), (5.20, 0.14, 0.30), SHELL, 0)
 
 # ------------------------------------------------------------------- roti
 # Rotile stau sub caroserie, nu langa ea: axul la z=-0.20, raza 0.72,
