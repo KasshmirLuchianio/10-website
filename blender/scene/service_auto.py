@@ -178,29 +178,12 @@ for i, (x, y) in enumerate(ROTI):
         (x - 0.32, y * 0.90, Z_AX + 0.24),
     ], FRANA, W_FRANA, r=0.042, picaturi=3)
 
-# ------------------------------------------------------------ bara de scanare
-# O dunga de lumina care trece prin masina: fara ea, transparenta se citeste ca
-# "obiect din sticla", nu ca "scanare".
-bpy.ops.mesh.primitive_plane_add(size=1, location=(-4.6, 0, 0.4))
-BARA = bpy.context.active_object
-BARA.name = "BaraScanare"
-# Planul se naste in XY. Ca sa devina o felie perpendiculara pe directia de
-# deplasare, il rotim 90 de grade in jurul lui Y si il scalam in planul lui,
-# nu pe grosime — altfel iese o dunga, cum a iesit prima data.
-BARA.scale = (2.6, 3.6, 1.0)
-BARA.rotation_euler = (0, math.radians(90), 0)
-BARA.data.materials.append(
-    K.mat("Scan", (0.4, 0.8, 1.0), 0.0, 0.2, emit=(0.35, 0.75, 1.0),
-          emit_power=2.2, alpha=0.16))
-for fr, x in ((1, -5.0), (T, 5.0)):
-    BARA.location.x = x
-    BARA.keyframe_insert("location", frame=fr)
-# Se naste si moare in interiorul masinii. Fara asta, la final ramane atarnata
-# langa bara spate ca un dreptunghi luminos care nu inseamna nimic.
-for fr, sc in ((1, 0.0), (int(T * 0.10), 1.0), (int(T * 0.88), 1.0), (T, 0.0)):
-    BARA.scale = (2.6 * sc, 3.6 * sc, 1.0)
-    BARA.keyframe_insert("scale", frame=fr)
-K.ease(BARA, "EASE_IN_OUT", "SINE")
+# Bara de scanare a fost scoasa. Ideea era ca o felie de lumina care trece prin
+# masina sa spuna "scanare"; in practica se citea ca un dreptunghi care taie
+# cadrul, si concura cu singurul lucru care trebuie privit — masina si
+# circuitele ei. Senzatia de scanare o dau deja muchiile luminoase si
+# circuitele care se aprind pe rand.
+
 
 # ------------------------------------------------------------ lumini si lume
 K.three_point(rim_color=(1.0, 0.32, 0.18), key=900, fill=520, rim=700,
